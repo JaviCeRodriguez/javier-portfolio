@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hand {
+  animation-name: hand-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+@keyframes hand-animation {
+  0% { transform: rotate( 0.0deg) }
+  10% { transform: rotate(14.0deg) } 
+  20% { transform: rotate(-8.0deg) }
+  30% { transform: rotate(14.0deg) }
+  40% { transform: rotate(-4.0deg) }
+  50% { transform: rotate(10.0deg) }
+  60% { transform: rotate( 0.0deg) }
+  100% { transform: rotate( 0.0deg) }
+}
+
+@layer components {
+  .title {
+    @apply font-poppins text-4xl font-extrabold text-fireOpal w-full;
+  }
+
+  .title-section {
+    @apply text-xl font-bold font-poppins text-white my-2 sm:text-2xl lg:text-3xl;
+  }
+
+  .subtitle {
+    @apply text-xl font-semibold font-poppins text-white sm:text-3xl md:text-4xl lg:w-64 lg:text-center;
+  }
+
+  .subtitle-section {
+    @apply text-base font-medium mt-6 font-poppins text-white sm:text-xl md:text-2xl lg:mt-2;
+  }
+
+  .paragraph {
+    @apply font-roboto text-sm text-languidLavender sm:text-base lg:text-lg;
+  }
+
+  .btn {
+    @apply px-2 sm:px-4 py-2 cursor-pointer rounded-md font-medium border-2
+    text-raisinBlack transition duration-700 ease-in-out;
+  }
+
+  .btn:hover {
+    @apply bg-transparent text-languidLavender border-2;
+  }
+
+  .btn-primary {
+    @apply bg-fireOpal border-fireOpal;
+  }
+
+  .btn-secondary {
+    @apply bg-tiffanyBlue border-tiffanyBlue;
+  }
+
+  .title {
+    @apply w-full px-4 text-left font-poppins text-4xl font-extrabold text-fireOpal mt-2;
+  }
+
+  .a-nav {
+    @apply font-poppins text-base px-2;
+  }
+
+  .a-nav:hover {
+    @apply border-b-4 border-fireOpal;
+  }
+
+  .item-nav {
+    @apply duration-500;
+  }
+
+  .item-nav:hover {
+    @apply text-fireOpal;
+  }
+
+  .icon-container {
+    @apply w-10 mx-2 text-3xl md:w-16 md:text-5xl lg:w-20 lg:text-6xl;
+  }
+}
