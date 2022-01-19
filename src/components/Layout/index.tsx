@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const Layout: React.FC<{}> = ({ children }) => {
   return (
@@ -11,6 +12,7 @@ const Layout: React.FC<{}> = ({ children }) => {
           {children}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
