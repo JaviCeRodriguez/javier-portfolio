@@ -1,13 +1,15 @@
-import "tailwindcss/tailwind.css";
+import { NextUIProvider } from "@nextui-org/react";
+import { AppProps } from "next/app";
 import Layout from "@/components/Layout";
-import { AppProps } from 'next/app';
 import "@/styles/index.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <NextUIProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </NextUIProvider>
   );
 }
 
