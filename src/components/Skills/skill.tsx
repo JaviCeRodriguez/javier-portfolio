@@ -1,22 +1,19 @@
 import React from "react";
-import { Avatar, Tooltip } from "@nextui-org/react";
+import { Tooltip } from "@nextui-org/react";
+import Image from "next/image";
+import { SkillWrapper } from "./index.styled";
 
 interface SkillProps {
-  color: "primary" | "secondary" | "success" | "error" | "warning";
   skill: string;
   src: string;
 }
 
-export const Skill: React.FC<SkillProps> = ({ color, skill, src }) => {
+export const Skill: React.FC<SkillProps> = ({ skill, src }) => {
   return (
-    <Tooltip content={skill} placement="bottom" color="invert">
-      <Avatar
-        bordered
-        color={color}
-        size="lg"
-        src={src}
-        style={{ margin: "0 1px" }}
-      />
+    <Tooltip content={skill} placement="top">
+      <div style={SkillWrapper}>
+        <Image src={src} width="45px" height="45px" />
+      </div>
     </Tooltip>
   );
 };
