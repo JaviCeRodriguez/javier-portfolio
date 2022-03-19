@@ -8,10 +8,10 @@ const Layout: React.FC<{}> = ({ children }) => {
     <>
       {/* <Navbar /> */}
       <div style={{ position: "relative" }}>
-        <LikesGlobal />
+        {/* <LikesGlobal /> */}
         <div>{children}</div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
