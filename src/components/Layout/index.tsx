@@ -8,6 +8,7 @@ const Layout: React.FC<{}> = ({ children }) => {
   return (
     <Container
       css={{
+        padding: "0 12px",
         width: "100vw",
         "@xs": {
           maxWidth: "650px",
