@@ -1,42 +1,85 @@
 import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import PostCard from "@/components/Cards";
 import { Post } from "@/utils/types";
+import { Button, Container, Row, Text } from "@nextui-org/react";
 
 const Blog: React.FC<{ data: Post[]; page: number }> = ({ data, page }) => {
   const router = useRouter();
 
   return (
-    <main style={{ paddingBottom: "100px", maxWidth: "1230px" }}>
+    <>
       <Head>
         <title>Javier Rodriguez | Blog</title>
       </Head>
-      <div>
-        {data &&
-          data.map((post: Post) => (
-            <div key={post.id}>
-              <h3>{post.title}</h3>
-              <img
-                src={post.cover_image}
-                alt={post.title}
-                style={{ width: "350px", height: "auto" }}
-              />
-            </div>
-          ))}
-        <button
-          onClick={() => router.push(`/blog?page=${page - 1}`)}
-          disabled={page === 1}
+      <>
+        <Container
+          css={{
+            padding: "0",
+            width: "100%",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
         >
-          Prev
-        </button>
-        <button
-          onClick={() => router.push(`/blog?page=${page + 1}`)}
-          disabled={data.length === 0 || data.length < 6}
-        >
-          Next
-        </button>
-      </div>
-    </main>
+          {data &&
+            data.map((post: Post) => <PostCard post={post} key={post.id} />)}
+        </Container>
+        {data.length === 0 && (
+          <Container
+            css={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              h2
+              css={{
+                color: "$accents2",
+                fontWeight: "700",
+              }}
+            >
+              Llegaste al final de página sin posts!
+            </Text>
+            <Text
+              h4
+              css={{
+                color: "$accents2",
+                fontWeight: "700",
+                marginBottom: "2rem",
+              }}
+            >
+              Vuelve al inicio o vaya a la página anterior para ver más posts.
+            </Text>
+            <Image src="/mate.png" width="400px" height="400px" />
+          </Container>
+        )}
+        <Row justify="space-between">
+          <Button
+            auto
+            icon="👈"
+            color="success"
+            onClick={() => router.push(`/blog?page=${page - 1}`)}
+            disabled={page === 1}
+          >
+            Pág. {page - 1}
+          </Button>
+          <Button
+            auto
+            icon="👉"
+            color="success"
+            onClick={() => router.push(`/blog?page=${page + 1}`)}
+            disabled={data.length === 0 || data.length < 6}
+          >
+            Pág. {page + 1}
+          </Button>
+        </Row>
+      </>
+    </>
   );
 };
 
