@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^1.0.2-beta.4",
+    "@nextui-org/react": "^1.0.2-beta.5",
     "@stitches/react": "^1.2.7",
     "firebase": "^9.6.8",
     "next": "12.1",

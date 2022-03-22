@@ -1,35 +1,54 @@
 import React from "react";
 import Link from "next/link";
-import { Button } from "@nextui-org/react";
-import { NavbarContainer, NavbarWrapper, CustomBtn } from "./index.styled";
+import { Container } from "@nextui-org/react";
+import { AnchorText, ListItem } from "./index.styled";
 
 const Navbar: React.FC = () => {
   return (
-    <NavbarContainer>
-      <NavbarWrapper>
-        <li>
-          <Link href="/">
-            <Button color="success" auto ghost css={CustomBtn}>
-              🧉 INICIO
-            </Button>
-          </Link>
-        </li>
-        <li>
-          <Link href="/">
-            <Button color="success" auto ghost css={CustomBtn}>
-              📁 PORTFOLIO
-            </Button>
-          </Link>
-        </li>
-        <li>
-          <Link href="/">
-            <Button color="success" auto ghost css={CustomBtn}>
-              ✍ BLOG
-            </Button>
-          </Link>
-        </li>
-      </NavbarWrapper>
-    </NavbarContainer>
+    <Container
+      css={{
+        padding: 0,
+      }}
+    >
+      <Container
+        css={{
+          padding: 0,
+          maxWidth: "368px",
+          width: "100%",
+        }}
+      >
+        <ul
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            margin: "10px 0",
+          }}
+        >
+          <li style={ListItem}>
+            <Link href="/">
+              <AnchorText b color="$success">
+                🧉 INICIO
+              </AnchorText>
+            </Link>
+          </li>
+          {/* <li style={ListItem}>
+            <Link href="/">
+              <AnchorText b color="$success">
+                🧉 PROYECTOS
+              </AnchorText>
+            </Link>
+          </li> */}
+          <li style={ListItem}>
+            <Link href="/blog">
+              <AnchorText b color="$success">
+                ✍ BLOG
+              </AnchorText>
+            </Link>
+          </li>
+        </ul>
+      </Container>
+    </Container>
   );
 };
 

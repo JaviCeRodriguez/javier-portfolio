@@ -22,7 +22,7 @@ const Layout: React.FC<{}> = ({ children }) => {
         },
       }}
     >
-      {/* <Navbar /> */}
+      <Navbar />
       <div style={{ position: "relative" }}>
         {/* <LikesGlobal /> */}
         <div>{children}</div>
