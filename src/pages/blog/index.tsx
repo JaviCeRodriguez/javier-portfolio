@@ -1,12 +1,13 @@
 import React from "react";
+import { GetServerSideProps } from 'next'
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import PostCard from "@/components/Cards";
 import { Post } from "@/utils/types";
-import { Button, Container, Row, Text } from "@nextui-org/react";
+import { Container, Pagination, Row, Text } from "@nextui-org/react";
 
-const Blog: React.FC<{ data: Post[]; page: number }> = ({ data, page }) => {
+const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({ data, page, totalPages }) => {
   const router = useRouter();
 
   return (
@@ -58,44 +59,29 @@ const Blog: React.FC<{ data: Post[]; page: number }> = ({ data, page }) => {
             <Image src="/mate.png" width="400px" height="400px" />
           </Container>
         )}
-        <Row justify="space-between">
-          <Button
-            auto
-            icon="👈"
-            color="success"
-            onClick={() => router.push(`/blog?page=${page - 1}`)}
-            disabled={page === 1}
-          >
-            Pág. {page - 1}
-          </Button>
-          <Button
-            auto
-            icon="👉"
-            color="success"
-            onClick={() => router.push(`/blog?page=${page + 1}`)}
-            disabled={data.length === 0 || data.length < 6}
-          >
-            Pág. {page + 1}
-          </Button>
+        <Row justify="center" style={{ margin: '20px 0 60px 0' }}>
+          <Pagination color="success" total={totalPages} initialPage={page} onChange={(page: number) => router.push(`/blog?page=${page}`)} />
         </Row>
       </>
     </>
   );
 };
 
-export async function getServerSideProps({ query: { page = 1 } }) {
-  const headers = new Headers();
-  headers.append("api-key", `${process.env.NEXT_PUBLIC_DEV_TO_API_KEY}`);
-  const res = await fetch(
-    `https://dev.to/api/articles/me?per_page=6&page=${page}`,
-    { headers }
-  );
-  const json = await res.json();
+export const getServerSideProps: GetServerSideProps = async ({ query: { page = 1 }, req }) => {
+  const protocol = req.headers['x-forwarded-proto'] || 'http'
+  const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
+
+  const postsPages = await fetch(`${baseUrl}/api/postsPages`);
+  const { totalPages } = await postsPages.json();
+
+  const posts = await fetch(`${baseUrl}/api/posts?page=${page}`);
+  const { data } = await posts.json();
 
   return {
     props: {
-      data: json,
+      data,
       page: Number(page),
+      totalPages,
     },
   };
 }
