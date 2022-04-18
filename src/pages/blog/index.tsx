@@ -16,7 +16,7 @@ const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({ da
         <title>Javier Rodriguez | Blog</title>
       </Head>
       <>
-        <Container
+        {(page > 0 && page <= totalPages) && data && <Container
           css={{
             padding: "0",
             width: "100%",
@@ -25,10 +25,10 @@ const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({ da
             justifyContent: "space-between",
           }}
         >
-          {data &&
+          {
             data.map((post: Post) => <PostCard post={post} key={post.id} />)}
-        </Container>
-        {data.length === 0 && (
+        </Container>}
+        {(page <= 0 || page > totalPages) && (
           <Container
             css={{
               width: "100%",
@@ -44,7 +44,7 @@ const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({ da
                 fontWeight: "700",
               }}
             >
-              Llegaste al final de página sin posts!
+              Llegaste a una página sin posts!
             </Text>
             <Text
               h4
@@ -54,7 +54,7 @@ const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({ da
                 marginBottom: "2rem",
               }}
             >
-              Vuelve al inicio o vaya a la página anterior para ver más posts.
+              Vuelve al inicio o vaya a alguna página para ver más posts.
             </Text>
             <Image src="/mate.png" width="400px" height="400px" />
           </Container>
