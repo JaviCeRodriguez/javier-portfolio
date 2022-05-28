@@ -1,15 +1,29 @@
-import { NextUIProvider } from "@nextui-org/react";
 import { AppProps } from "next/app";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 import Layout from "@/components/Layout";
-import "@/styles/index.css";
+import { Dict } from "@chakra-ui/utils";
+import { dark, light } from "@/theme/colors";
+
+const styles = {
+  global: (props: Dict<any>) => ({
+    body: {
+      bg: mode(light.background, dark.background)(props),
+    },
+  }),
+};
+
+const theme = extendTheme({
+  styles,
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NextUIProvider>
+    <ChakraProvider resetCSS theme={theme}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </NextUIProvider>
+    </ChakraProvider>
   );
 }
 
