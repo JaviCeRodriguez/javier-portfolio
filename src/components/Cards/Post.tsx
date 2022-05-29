@@ -66,7 +66,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
           </Box>
           {post.tag_list &&
             post.tag_list.map((tag) => (
-              <Tag p="1" bg="#ff91009d" m="0.5" size="sm">
+              <Tag p="1" bg="#ff91009d" m="0.5" size="sm" key={tag}>
                 #&nbsp;{tag}
               </Tag>
             ))}
