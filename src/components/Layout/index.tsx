@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 const Layout: React.FC<{}> = ({ children }) => {
   return (
-    <Container maxW="container.xl" w="100vw">
+    <Container maxW="container.xl" w="100vw" pos="relative" pt={16}>
       <Navbar />
       <div style={{ position: "relative" }}>
         <div>{children}</div>
