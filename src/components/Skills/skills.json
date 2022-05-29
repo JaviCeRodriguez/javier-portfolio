@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Lenguajes",
+    "skills": [
+      {
+        "name": "Typescript",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+      },
+      {
+        "name": "Python",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+      }
+    ]
+  },
+  {
+    "name": "Bases de datos",
+    "skills": [
+      {
+        "name": "PostegreSQL",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+      },
+      {
+        "name": "Firebase",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+      },
+      {
+        "name": "MongoDB",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg"
+      }
+    ]
+  },
+  {
+    "name": "Frontend",
+    "skills": [
+      {
+        "name": "React.js",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg"
+      },
+      {
+        "name": "Next.js",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+      },
+      {
+        "name": "Gatsby",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gatsby/gatsby-plain.svg"
+      },
+      {
+        "name": "TailwindCSS",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
+      },
+      {
+        "name": "Styled Components",
+        "image": "https://emoji.aranja.com/static/emoji-data/img-apple-160/1f485.png"
+      }
+    ]
+  },
+  {
+    "name": "Backend",
+    "skills": [
+      {
+        "name": "Django",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+      },
+      {
+        "name": "FastAPI",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+      },
+      {
+        "name": "Node.js",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+      }
+    ]
+  },
+  {
+    "name": "Utilidades",
+    "skills": [
+      {
+        "name": "Storybook",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg"
+      },
+      {
+        "name": "Trello",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg"
+      },
+      {
+        "name": "Jira",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg"
+      },
+      {
+        "name": "Docker",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+      }
+    ]
+  }
+]

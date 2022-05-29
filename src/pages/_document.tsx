@@ -1,6 +1,6 @@
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { CssBaseline } from "@nextui-org/react";
+import { ColorModeScript } from "@chakra-ui/react";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
@@ -15,7 +15,6 @@ class MyDocument extends Document {
     return (
       <Html lang="es">
         <Head>
-          {CssBaseline.flush()}
           <meta charSet="utf-8" />
           <meta name="author" content="Javier Rodriguez" />
           <meta name="description" content="Portfolio"></meta>
@@ -31,6 +30,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
+          <ColorModeScript />
           <Main />
           <NextScript />
         </body>

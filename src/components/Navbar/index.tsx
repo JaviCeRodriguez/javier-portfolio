@@ -1,55 +1,96 @@
-import React from "react";
-import Link from "next/link";
-import { Container } from "@nextui-org/react";
-import { AnchorText, ListItem } from "./index.styled";
+import { ReactNode } from "react";
+import {
+  Box,
+  Flex,
+  HStack,
+  Link,
+  IconButton,
+  Button,
+  useDisclosure,
+  useColorModeValue,
+  Stack,
+  useColorMode,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { dark, light } from "@/theme/colors";
 
-const Navbar: React.FC = () => {
+const links = [
+  {
+    name: "🏡 Inicio",
+    path: "/",
+    id: "home-link",
+  },
+  {
+    name: "📚 Blog",
+    path: "/blog",
+    id: "blog-link",
+  },
+  {
+    name: "⚗ Proyectos",
+    path: "/projects",
+    id: "projects-link",
+  },
+];
+
+const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={"md"}
+    _hover={{
+      textDecoration: "none",
+      bg: useColorModeValue("gray.200", "gray.700"),
+    }}
+    href={path}
+  >
+    {children}
+  </Link>
+);
+
+export default function Navbar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <Container
-      css={{
-        padding: 0,
-      }}
+    <Box
+      px={4}
+      boxShadow="md"
+      borderBottomRadius="md"
+      bg={useColorModeValue(light.background, dark.background)}
     >
-      <Container
-        css={{
-          padding: 0,
-          maxWidth: "368px",
-          width: "100%",
-        }}
-      >
-        <ul
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-            margin: "10px 0",
-          }}
-        >
-          <li style={ListItem}>
-            <Link href="/">
-              <AnchorText b color="$success">
-                🧉 INICIO
-              </AnchorText>
-            </Link>
-          </li>
-          {/* <li style={ListItem}>
-            <Link href="/">
-              <AnchorText b color="$success">
-                🧉 PROYECTOS
-              </AnchorText>
-            </Link>
-          </li> */}
-          <li style={ListItem}>
-            <Link href="/blog">
-              <AnchorText b color="$success">
-                ✍ BLOG
-              </AnchorText>
-            </Link>
-          </li>
-        </ul>
-      </Container>
-    </Container>
-  );
-};
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <IconButton
+          size={"md"}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label={"Open Menu"}
+          display={{ md: "none" }}
+          onClick={isOpen ? onClose : onOpen}
+        />
+        <HStack spacing={8} alignItems={"center"}>
+          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+            {links.map(({ id, name, path }) => (
+              <NavLink key={id} path={path}>
+                {name}
+              </NavLink>
+            ))}
+          </HStack>
+        </HStack>
+        <Button onClick={toggleColorMode}>
+          {colorMode === "light" ? "🌑" : "☀"}
+        </Button>
+      </Flex>
 
-export default Navbar;
+      {isOpen ? (
+        <Box pb={4} display={{ md: "none" }}>
+          <Stack as={"nav"} spacing={4}>
+            {links.map(({ id, name, path }) => (
+              <NavLink key={id} path={path}>
+                {name}
+              </NavLink>
+            ))}
+          </Stack>
+        </Box>
+      ) : null}
+    </Box>
+  );
+}
