@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
           />
         </Link>
       </HStack>
-      <Text size="16px" color="white" style={{ textAlign: "center" }}>
+      <Text size="16px">
         Portfolio hecho con muchos matecitos 🧉 &copy;&nbsp;
         {new Date().getFullYear()}
       </Text>
