@@ -18,7 +18,7 @@ interface SkillProps {
 const Skill: React.FC<SkillProps> = ({ skill, src }) => {
   return (
     <Tooltip label={skill} placement="top" hasArrow>
-      <Image src={src} boxSize="50px" />
+      <Image src={src} boxSize="50px" my="2" />
     </Tooltip>
   );
 };
@@ -50,7 +50,7 @@ const CardSkills: React.FC = ({ children }) => {
 
 const WrapperSkills: React.FC = ({ children }) => {
   return (
-    <HStack mt="4" justifyContent="space-around">
+    <HStack mt="4" justifyContent="space-around" wrap="wrap">
       {children}
     </HStack>
   );
