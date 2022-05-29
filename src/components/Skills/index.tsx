@@ -1,124 +1,95 @@
 import React from "react";
-import { Card, Text } from "@nextui-org/react";
-import { Skill } from "./skill";
 import {
-  StyledCard,
-  StyledBody,
-  StyledSkills,
-  TitleSection,
-} from "./index.styled";
+  Box,
+  Heading,
+  HStack,
+  Tooltip,
+  Image,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { dark, light } from "@/theme/colors";
+import skills from "./skills.json";
 
-interface CardHeaderProp {
-  title: string;
+interface SkillProps {
+  skill: string;
+  src: string;
 }
 
-export const CardHeader: React.FC<CardHeaderProp> = ({ title }) => {
+const Skill: React.FC<SkillProps> = ({ skill, src }) => {
   return (
-    <Card.Header>
-      <Text h4 style={{ fontWeight: "bold", color: "white" }}>
-        {title}
-      </Text>
-    </Card.Header>
+    <Tooltip label={skill} placement="top" hasArrow>
+      <Image src={src} boxSize="50px" />
+    </Tooltip>
+  );
+};
+
+const CardSkills: React.FC = ({ children }) => {
+  return (
+    <Box
+      userSelect="none"
+      border="1px"
+      borderRadius="md"
+      borderColor={useColorModeValue(dark.background, light.background)}
+      w="max-content"
+      p={4}
+      sx={{ margin: "10px !important" }}
+      transition="all 0.2s ease-in-out"
+      transitionDuration="0.2s"
+      _hover={{
+        shadow: `0px 0px 10px ${useColorModeValue(
+          dark.background,
+          light.background
+        )}`,
+        transform: "scale(1.0223)",
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
+const WrapperSkills: React.FC = ({ children }) => {
+  return (
+    <HStack mt="4" justifyContent="space-around">
+      {children}
+    </HStack>
   );
 };
 
 const Skills: React.FC = () => {
   return (
-    <StyledSkills>
-      <Text h2 css={TitleSection}>
+    <Box my="14">
+      <Heading as="h2" fontSize="2xl" my={6}>
         Tengo conocimientos en:
-      </Text>
+      </Heading>
 
-      <Card css={StyledCard}>
-        <CardHeader title="Lenguajes" />
-        <Card.Body css={StyledBody}>
-          <Skill
-            skill="Typescript"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-          />
-          <Skill
-            skill="Python"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-          />
-        </Card.Body>
-      </Card>
-
-      <Card css={StyledCard}>
-        <CardHeader title="Bases de datos" />
-        <Card.Body css={StyledBody}>
-          <Skill
-            skill="PostgreSQL"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-          />
-          <Skill
-            skill="Firebase"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
-          />
-          <Skill
-            skill="MongoDB"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg"
-          />
-        </Card.Body>
-      </Card>
-
-      <Card css={StyledCard}>
-        <CardHeader title="Frontend" />
-        <Card.Body css={StyledBody}>
-          <Skill
-            skill="React.js"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg"
-          />
-          <Skill
-            skill="Next.js"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
-          />
-          <Skill
-            skill="Gatsby"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gatsby/gatsby-plain.svg"
-          />
-          <Skill
-            skill="Tailwind CSS"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
-          />
-          <Skill
-            skill="Styled Components"
-            src="https://emoji.aranja.com/static/emoji-data/img-apple-160/1f485.png"
-          />
-        </Card.Body>
-      </Card>
-
-      <Card css={StyledCard}>
-        <CardHeader title="Backend" />
-        <Card.Body css={StyledBody}>
-          <Skill
-            skill="Django"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-original.svg"
-          />
-          <Skill
-            skill="Node.js"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-          />
-        </Card.Body>
-      </Card>
-
-      <Card css={StyledCard}>
-        <CardHeader title="Utilidades" />
-        <Card.Body css={StyledBody}>
-          <Skill
-            skill="Storybook"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg"
-          />
-          <Skill
-            skill="Trello"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg"
-          />
-          <Skill
-            skill="Jira"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg"
-          />
-        </Card.Body>
-      </Card>
-    </StyledSkills>
+      <HStack
+        justifyContent="space-around"
+        alignContent="space-around"
+        wrap="wrap"
+      >
+        {skills.map((item) => {
+          return (
+            <CardSkills key={item.name}>
+              <Heading as="h4" fontSize="lg">
+                {item.name}
+              </Heading>
+              <WrapperSkills>
+                {item.skills.map((skill) => {
+                  return (
+                    <Skill
+                      key={skill.name}
+                      skill={skill.name}
+                      src={skill.image}
+                    />
+                  );
+                })}
+              </WrapperSkills>
+            </CardSkills>
+          );
+        })}
+      </HStack>
+    </Box>
   );
 };
 

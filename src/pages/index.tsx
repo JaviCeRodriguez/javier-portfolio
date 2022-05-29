@@ -9,8 +9,8 @@ const Home: React.FC = () => {
       <Head>
         <title>Javier Rodriguez | Inicio</title>
       </Head>
-      {/* <About />
-      <Skills /> */}
+      <About />
+      <Skills />
     </main>
   );
 };
