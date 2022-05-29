@@ -12,7 +12,7 @@ const Layout: React.FC<{}> = ({ children }) => {
       <div style={{ position: "relative" }}>
         <div>{children}</div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Container>
   );
 };

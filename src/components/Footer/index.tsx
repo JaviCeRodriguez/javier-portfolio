@@ -1,83 +1,58 @@
 import React from "react";
-import { Avatar, Link, Text } from "@nextui-org/react";
+import { Image, Box, HStack, Link, Text, VStack } from "@chakra-ui/react";
 
 const Footer: React.FC = () => {
   return (
-    <footer
-      style={{
-        paddingBottom: "20px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ margin: "0 10px " }}>
-          <Link
-            href="https://www.linkedin.com/in/rodriguezjavierc/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Avatar
-              style={{ cursor: "pointer" }}
-              size="sm"
-              squared
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-            />
-          </Link>
-        </div>
-        <div style={{ margin: "0 10px " }}>
-          <Link
-            href="mailto:javicerodriguez@gmail.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Avatar
-              style={{ cursor: "pointer" }}
-              size="sm"
-              squared
-              src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png"
-            />
-          </Link>
-        </div>
-        <div style={{ margin: "0 10px " }}>
-          <Link
-            href="https://github.com/JaviCeRodriguez/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Avatar
-              style={{ cursor: "pointer" }}
-              size="sm"
-              squared
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-            />
-          </Link>
-        </div>
-        <div style={{ margin: "0 10px " }}>
-          <Link
-            href="https://twitter.com/javicerodriguez"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Avatar
-              style={{ cursor: "pointer" }}
-              size="sm"
-              squared
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
-            />
-          </Link>
-        </div>
-      </div>
+    <VStack as="footer" pb="4" alignItems="center">
+      <HStack w="200px" justifyContent="space-between" mb="4">
+        <Link
+          href="https://www.linkedin.com/in/rodriguezjavierc/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Image
+            boxSize="30px"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+          />
+        </Link>
+        <Link
+          href="mailto:javicerodriguez@gmail.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Image
+            boxSize="30px"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png"
+          />
+        </Link>
+        <Link
+          href="https://github.com/JaviCeRodriguez/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Image
+            boxSize="30px"
+            bg="white"
+            rounded="full"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+          />
+        </Link>
+        <Link
+          href="https://twitter.com/javicerodriguez"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Image
+            boxSize="30px"
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
+          />
+        </Link>
+      </HStack>
       <Text size="16px" color="white" style={{ textAlign: "center" }}>
-        Portfolio hecho con muchos matecitos 🧉 {new Date().getFullYear()}
+        Portfolio hecho con muchos matecitos 🧉 &copy;&nbsp;
+        {new Date().getFullYear()}
       </Text>
-    </footer>
+    </VStack>
   );
 };
 
