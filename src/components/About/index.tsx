@@ -1,16 +1,5 @@
 import React from "react";
-import NextLink from "next/link";
-import {
-  Avatar,
-  Box,
-  Heading,
-  Text,
-  HStack,
-  Link,
-  Image,
-  Divider,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Heading, Text, Image, Divider } from "@chakra-ui/react";
 
 const About: React.FC = () => {
   return (

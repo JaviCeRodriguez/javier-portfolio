@@ -58,7 +58,7 @@ const WrapperSkills: React.FC = ({ children }) => {
 
 const Skills: React.FC = () => {
   return (
-    <Box my="14">
+    <Box mt="14" mb="2">
       <Heading as="h2" fontSize="2xl" my={6}>
         Tengo conocimientos en:
       </Heading>

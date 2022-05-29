@@ -4,6 +4,18 @@ import { Image, Box, HStack, Link, Text, VStack } from "@chakra-ui/react";
 const Footer: React.FC = () => {
   return (
     <VStack as="footer" pb="4" alignItems="center">
+      <Link
+        href="https://cafecito.app/javicerodriguez"
+        rel="noopener"
+        isExternal
+        mb="4"
+      >
+        <img
+          srcSet="https://cdn.cafecito.app/imgs/buttons/button_6.png 1x, https://cdn.cafecito.app/imgs/buttons/button_6_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_6_3.75x.png 3.75x"
+          src="https://cdn.cafecito.app/imgs/buttons/button_6.png"
+          alt="Invitame un café en cafecito.app"
+        />
+      </Link>
       <HStack w="200px" justifyContent="space-between" mb="4">
         <Link
           href="https://www.linkedin.com/in/rodriguezjavierc/"
@@ -48,7 +60,7 @@ const Footer: React.FC = () => {
           />
         </Link>
       </HStack>
-      <Text size="16px">
+      <Text size="16px" textAlign="center">
         Portfolio hecho con muchos matecitos 🧉 &copy;&nbsp;
         {new Date().getFullYear()}
       </Text>
