@@ -11,6 +11,7 @@ import {
   Stack,
   useColorMode,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { dark, light } from "@/theme/colors";
 
@@ -33,18 +34,19 @@ const links = [
 ];
 
 const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={path}
-  >
-    {children}
-  </Link>
+  <NextLink href={path} passHref>
+    <Link
+      px={2}
+      py={1}
+      rounded={"md"}
+      _hover={{
+        textDecoration: "none",
+        bg: useColorModeValue("gray.200", "gray.700"),
+      }}
+    >
+      {children}
+    </Link>
+  </NextLink>
 );
 
 export default function Navbar() {

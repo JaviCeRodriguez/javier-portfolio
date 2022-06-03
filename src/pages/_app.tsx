@@ -13,7 +13,7 @@ const styles = {
   }),
 };
 
-const theme = extendTheme({
+export const theme = extendTheme({
   styles,
 });
 
