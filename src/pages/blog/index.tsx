@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import fs from "fs";
+import matter from "gray-matter";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -17,51 +19,43 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import PostCard from "@/components/Cards/Post";
 import { Post } from "@/utils/types";
 
-const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({
-  data,
-  page,
-  totalPages,
-}) => {
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const { currentPage, setCurrentPage, pagesCount, pages } = usePagination({
-    pagesCount: totalPages,
-    initialState: { currentPage: 1 },
-  });
+const Blog: React.FC<{ posts: Post[] }> = ({ posts }) => {
+  // const [loading, setLoading] = useState(false);
+  // const router = useRouter();
+  // const { currentPage, setCurrentPage, pagesCount, pages } = usePagination({
+  //   pagesCount: totalPages,
+  //   initialState: { currentPage: 1 },
+  // });
 
-  const handlePageChange = (nextPage: number): void => {
-    setCurrentPage(nextPage);
-    router.push(`/blog?page=${nextPage}`);
-    setLoading(true);
-  };
+  // const handlePageChange = (nextPage: number): void => {
+  //   setCurrentPage(nextPage);
+  //   router.push(`/blog?page=${nextPage}`);
+  //   setLoading(true);
+  // };
 
-  useEffect(() => {
-    if (data && data.length >= 0) {
-      setLoading(false);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data && data.length >= 0) {
+  //     setLoading(false);
+  //   }
+  // }, [data]);
 
   return (
     <Box as="main" pb="100px" maxW="1230px">
       <Head>
         <title>Javier Rodriguez | Blog</title>
       </Head>
-      {!loading ? (
+      {true ? (
         <Box>
-          {page > 0 && page <= totalPages && data && (
-            <>
-              <Heading as="h2" fontSize="2xl" mt={6}>
-                Mis publicaciones en DEV.to &gt;&gt; Página {currentPage}
-              </Heading>
-              <Box display="flex" flexWrap="wrap" justifyContent="space-around">
-                {data.map((post: Post) => (
-                  <PostCard post={post} key={post.id} />
-                ))}
-              </Box>
-            </>
-          )}
+          <Heading as="h2" fontSize="2xl" mt={6}>
+            Mis publicaciones en DEV.to
+          </Heading>
+          <Box display="flex" flexWrap="wrap" justifyContent="space-around">
+            {posts.map((post: Post) => (
+              <PostCard post={post} key={post.slug} />
+            ))}
+          </Box>
 
-          {(page <= 0 || page > totalPages) && (
+          {/* {(page <= 0 || page > totalPages) && (
             <VStack w="full" my="10">
               <Heading as="h2">
                 Llegaste a una página sin publicaciones!
@@ -76,9 +70,9 @@ const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({
                 draggable="false"
               />
             </VStack>
-          )}
+          )} */}
 
-          <HStack justify="center" style={{ margin: "20px 0 60px 0" }}>
+          {/* <HStack justify="center" style={{ margin: "20px 0 60px 0" }}>
             <Pagination
               pagesCount={pagesCount}
               currentPage={currentPage}
@@ -108,7 +102,7 @@ const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({
                 </PaginationNext>
               </PaginationContainer>
             </Pagination>
-          </HStack>
+          </HStack> */}
         </Box>
       ) : (
         <Box
@@ -124,26 +118,46 @@ const Blog: React.FC<{ data: Post[]; page: number; totalPages: number }> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({
-  query: { page = 1 },
-  req,
-}) => {
-  const protocol = req.headers["x-forwarded-proto"] || "http";
-  const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
+export async function getStaticProps() {
+  const files = fs.readdirSync("posts");
 
-  const postsPages = await fetch(`${baseUrl}/api/postsPages`);
-  const { totalPages } = await postsPages.json();
-
-  const posts = await fetch(`${baseUrl}/api/posts?page=${page}`);
-  const { data } = await posts.json();
+  const posts = files.map((fileName) => {
+    const slug = fileName.replace(".md", "");
+    const readFile = fs.readFileSync(`posts/${fileName}`, "utf-8");
+    const { data: frontmatter } = matter(readFile);
+    return {
+      slug,
+      frontmatter,
+    };
+  });
 
   return {
     props: {
-      data,
-      page: Number(page),
-      totalPages,
+      posts,
     },
   };
-};
+}
+
+// export const getServerSideProps: GetServerSideProps = async ({
+//   query: { page = 1 },
+//   req,
+// }) => {
+//   const protocol = req.headers["x-forwarded-proto"] || "http";
+//   const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
+
+//   const postsPages = await fetch(`${baseUrl}/api/postsPages`);
+//   const { totalPages } = await postsPages.json();
+
+//   const posts = await fetch(`${baseUrl}/api/posts?page=${page}`);
+//   const { data } = await posts.json();
+
+//   return {
+//     props: {
+//       data,
+//       page: Number(page),
+//       totalPages,
+//     },
+//   };
+// };
 
 export default Blog;
