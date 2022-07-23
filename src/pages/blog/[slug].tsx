@@ -11,6 +11,7 @@ import {
   Checkbox,
   ListItem,
   ListIcon,
+  Link,
 } from "@chakra-ui/react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import ReactMarkdown from "react-markdown";
@@ -46,16 +47,18 @@ export async function getStaticProps({ params: { slug } }: any) {
   const { data: frontmatter, content } = matter(fileName);
   return {
     props: {
+      slug,
       frontmatter,
       content,
     },
   };
 }
 
-const PostPage: React.FC<{ frontmatter: Frontmatter; content: string }> = ({
-  frontmatter,
-  content,
-}) => {
+const PostPage: React.FC<{
+  slug: string;
+  frontmatter: Frontmatter;
+  content: string;
+}> = ({ slug, frontmatter, content }) => {
   const newTheme = {
     p: (props: any) => {
       const { children } = props;
@@ -75,11 +78,12 @@ const PostPage: React.FC<{ frontmatter: Frontmatter; content: string }> = ({
       return (
         <Code
           className={className}
-          whiteSpace="break-spaces"
+          // whiteSpace="break-spaces"
           display="block"
           w="90%"
           p={2}
           rounded="lg"
+          overflowX="scroll"
           children={children}
         />
       );
@@ -140,6 +144,29 @@ const PostPage: React.FC<{ frontmatter: Frontmatter; content: string }> = ({
         <meta property="og:description" content={frontmatter.metaDesc} />
         <meta property="og:image" content={frontmatter.socialImage} />
       </Head>
+      <Box
+        w="full"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        mb="6"
+      >
+        <Link
+          href={`https://dev.to/javicerodriguez/${slug}`}
+          isExternal
+          p="4px 20px"
+          my="4"
+          rounded="md"
+          bgColor="blue.500"
+          fontWeight="semibold"
+        >
+          ¡Ver la publicación original!
+        </Link>
+        <Text textAlign="center" fontSize="sm">
+          (Hasta implementar mejoras, lo recomendable es visualizarlo desde el
+          origen de la publicación)
+        </Text>
+      </Box>
       <Heading as="h1">{frontmatter.title}</Heading>
       <ReactMarkdown
         // @ts-ignore
