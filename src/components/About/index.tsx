@@ -30,7 +30,7 @@ const About: React.FC = () => {
           >
             <Image
               borderRadius="lg"
-              src="/perfil.jpg"
+              src="https://avatars.githubusercontent.com/u/68615684"
               alt="Foto de Javier Rodriguez"
               objectFit="contain"
               draggable="false"
