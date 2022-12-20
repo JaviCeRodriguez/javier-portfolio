@@ -34,19 +34,19 @@ const links = [
 ];
 
 const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
-  <NextLink href={path} passHref>
-    <Link
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-    >
-      {children}
-    </Link>
-  </NextLink>
+  <Link
+    as={NextLink}
+    href={path}
+    px={2}
+    py={1}
+    rounded={"md"}
+    _hover={{
+      textDecoration: "none",
+      bg: useColorModeValue("gray.200", "gray.700"),
+    }}
+  >
+    {children}
+  </Link>
 );
 
 export default function Navbar() {
