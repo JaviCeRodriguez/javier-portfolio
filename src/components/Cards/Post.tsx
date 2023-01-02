@@ -47,7 +47,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
               mb={2}
               pos="relative"
             >
-              <Image src={socialImage} layout="fill" objectFit="cover" />
+              <Image src={socialImage} layout="fill" objectFit="cover" alt="social-image" />
               <Stack
                 direction={"row"}
                 spacing={2}
