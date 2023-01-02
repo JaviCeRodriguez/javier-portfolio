@@ -14,7 +14,7 @@ export default function Custom404() {
         <h4>mate</h4>
         &nbsp;y vuelve al inicio!
       </h4>
-      <Image src="/mate.png" width="400px" height="400px" />
+      <Image src="/mate.png" width={400} height={400} alt="mate" />
     </div>
   );
 }
