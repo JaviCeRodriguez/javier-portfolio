@@ -3,25 +3,11 @@ import {
   Box,
   Heading,
   HStack,
-  Tooltip,
   Image,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { dark, light } from "@/theme/colors";
 import skills from "./skills.json";
-
-interface SkillProps {
-  skill: string;
-  src: string;
-}
-
-const Skill: React.FC<SkillProps> = ({ skill, src }) => {
-  return (
-    <Tooltip label={skill} placement="top" hasArrow>
-      <Image src={src} boxSize="50px" my="2" />
-    </Tooltip>
-  );
-};
 
 const CardSkills: React.FC = ({ children }) => {
   return (
@@ -30,9 +16,8 @@ const CardSkills: React.FC = ({ children }) => {
       border="1px"
       borderRadius="md"
       borderColor={useColorModeValue(dark.background, light.background)}
-      w="max-content"
+      w={{ base: "max-content", md: "45%", lg: "80%", xl: "60%" }}
       p={4}
-      sx={{ margin: "10px !important" }}
       transition="all 0.2s ease-in-out"
       transitionDuration="0.2s"
       _hover={{
@@ -50,7 +35,7 @@ const CardSkills: React.FC = ({ children }) => {
 
 const WrapperSkills: React.FC = ({ children }) => {
   return (
-    <HStack mt="4" justifyContent="space-around" wrap="wrap">
+    <HStack justifyContent="space-around" wrap="wrap" gap={2}>
       {children}
     </HStack>
   );
@@ -67,20 +52,21 @@ const Skills: React.FC = () => {
         justifyContent="space-around"
         alignContent="space-around"
         wrap="wrap"
+        gap={4}
       >
         {skills.map((item) => {
           return (
             <CardSkills key={item.name}>
-              <Heading as="h4" fontSize="lg">
+              <Heading as="h4" fontSize="lg" mb={4}>
                 {item.name}
               </Heading>
               <WrapperSkills>
                 {item.skills.map((skill) => {
                   return (
-                    <Skill
+                    <Image
                       key={skill.name}
-                      skill={skill.name}
                       src={skill.image}
+                      alt={skill.name}
                     />
                   );
                 })}

@@ -4,11 +4,11 @@
     "skills": [
       {
         "name": "Typescript",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+        "image": "https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"
       },
       {
         "name": "Python",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+        "image": "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
       }
     ]
   },
@@ -17,15 +17,15 @@
     "skills": [
       {
         "name": "PostegreSQL",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+        "image": "https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"
       },
       {
         "name": "Firebase",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+        "image": "https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase"
       },
       {
         "name": "MongoDB",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg"
+        "image": "https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"
       }
     ]
   },
@@ -34,23 +34,23 @@
     "skills": [
       {
         "name": "React.js",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg"
+        "image": "https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"
       },
       {
         "name": "Next.js",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+        "image": "https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white"
       },
       {
         "name": "Gatsby",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gatsby/gatsby-plain.svg"
+        "image": "https://img.shields.io/badge/Gatsby-%23663399.svg?style=for-the-badge&logo=gatsby&logoColor=white"
       },
       {
         "name": "TailwindCSS",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
+        "image": "https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"
       },
       {
         "name": "Styled Components",
-        "image": "https://emoji.aranja.com/static/emoji-data/img-apple-160/1f485.png"
+        "image": "https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"
       }
     ]
   },
@@ -59,15 +59,23 @@
     "skills": [
       {
         "name": "Django",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+        "image": "https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white"
+      },
+      {
+        "name": "Django REST Framework",
+        "image": "https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray"
       },
       {
         "name": "FastAPI",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+        "image": "https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi"
+      },
+      {
+        "name": "Flask",
+        "image": "https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white"
       },
       {
         "name": "Node.js",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+        "image": "https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"
       }
     ]
   },
@@ -76,19 +84,23 @@
     "skills": [
       {
         "name": "Storybook",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg"
+        "image": "https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white"
       },
       {
         "name": "Trello",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg"
+        "image": "https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white"
       },
       {
         "name": "Jira",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg"
+        "image": "https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white"
       },
       {
         "name": "Docker",
-        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+        "image": "https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"
+      },
+      {
+        "name": "Postman",
+        "image": "https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"
       }
     ]
   }
