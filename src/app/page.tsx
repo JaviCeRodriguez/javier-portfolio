@@ -1,10 +1,7 @@
-import Navbar from "@/components/custom/navbar";
-import Image from "next/image";
-
 export default function Home() {
   return (
     <main className="">
-      <Navbar />
+      Aca va una foto, una breve descripcion y algunas redes sociales
     </main>
   );
 }
