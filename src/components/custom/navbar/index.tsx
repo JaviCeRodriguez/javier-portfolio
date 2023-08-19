@@ -100,8 +100,8 @@ const Navbar = () => {
 
       <NavigationMenu>
         <NavigationMenuList>
-          <NavItemsTable />
-          <NavItemsMobile />
+          {/* <NavItemsTable />
+          <NavItemsMobile /> */}
           <ModeToggle />
         </NavigationMenuList>
       </NavigationMenu>

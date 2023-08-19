@@ -1,7 +1,9 @@
+import Presentation from "@/components/custom/presentation";
+
 export default function Home() {
   return (
-    <main className="min-h-[200vh]">
-      Aca va una foto, una breve descripcion y algunas redes sociales
+    <main className="mt-5 mb-20 sm:mt-20">
+      <Presentation />
     </main>
   );
 }

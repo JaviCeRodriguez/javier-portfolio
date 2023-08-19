@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={`${inter.className} relative`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          <div className="container mx-auto mt-20">{children}</div>
+          <div className="container mx-auto pt-20 min-h-[100vh]">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
