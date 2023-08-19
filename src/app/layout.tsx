@@ -18,10 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} relative`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          <div className="container mx-auto">{children}</div>
+          <div className="container mx-auto mt-20">{children}</div>
         </ThemeProvider>
       </body>
     </html>
