@@ -12,10 +12,11 @@ const Presentation = () => {
       <Image
         src="/images/javo.jpg"
         alt="profile-pic"
-        width={460}
-        height={460}
+        width={2320}
+        height={1740}
         className="rounded-2xl justify-self-center"
         loading="lazy"
+        quality={100}
       />
       <div className="flex flex-col">
         <h1 className="text-4xl font-bold mb-2 lg:text-5xl">
