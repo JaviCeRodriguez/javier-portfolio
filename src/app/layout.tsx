@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import Navbar from "@/components/custom/navbar";
@@ -29,6 +30,7 @@ export default function RootLayout({
           <Navbar />
           <div className="container mx-auto pt-20 min-h-[100vh]">
             {children}
+            <Analytics />
           </div>
         </ThemeProvider>
       </body>
