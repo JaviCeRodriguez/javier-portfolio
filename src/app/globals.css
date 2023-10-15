@@ -1,6 +1,80 @@
+@import "highlight.js/styles/obsidian.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.notion-code {
+  @apply bg-gray-800 rounded-xl px-4 py-2 w-full overflow-auto max-h-[600px] my-2;
+}
+
+.notion-heading_1 {
+  @apply text-4xl text-center font-bold my-2;
+}
+
+.notion-heading_1 + p {
+  @apply text-center my-2;
+}
+
+.notion-heading_2 {
+  @apply text-3xl font-bold my-2;
+}
+
+.notion-heading_3 {
+  @apply text-2xl font-bold my-2;
+}
+
+.notion-image {
+  @apply rounded-xl overflow-hidden w-full md:w-8/12 max-w-[800px] my-2 mx-auto;
+}
+
+.notion-callout {
+  @apply flex w-full bg-gray-800 p-2 rounded-xl my-2;
+}
+
+.notion-to_do_list {
+  @apply w-full my-2;
+}
+
+.notion-callout > .content {
+  @apply italic;
+}
+
+.notion-table {
+  @apply my-2 w-full rounded-xl overflow-hidden;
+}
+
+.notion-table_row:first-child {
+  @apply font-bold bg-gray-800;
+}
+
+.notion-table_row {
+  @apply bg-gray-700 text-sm;
+}
+
+.notion-table_row:nth-child(2n) {
+  @apply bg-gray-600;
+}
+
+.notion-table_cell {
+  @apply p-2;
+}
+
+/* Scrollbar
+En Firefox no aplico cambios */
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #454545;
+  border-radius: 10px;
+  border: 3px solid #ffffff00;
+}
 
 @layer base {
   :root {
