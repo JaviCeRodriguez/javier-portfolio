@@ -12,15 +12,17 @@ export const notionClient = new Client({
 });
 
 export const getPages = cache(() => {
-  return notionClient.databases.query({
-    filter: {
-      property: "Status",
-      select: {
-        equals: "Published",
+  return notionClient.databases
+    .query({
+      filter: {
+        property: "Status",
+        status: {
+          equals: "Published",
+        },
       },
-    },
-    database_id: process.env.NOTION_DATABASE_ID!,
-  });
+      database_id: process.env.NOTION_DATABASE_ID!,
+    })
+    .then((res) => res.results as PageObjectResponse[]);
 });
 
 export const getPageContent = cache((pageId: string) => {

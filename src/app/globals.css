@@ -1,18 +1,18 @@
-@import "highlight.js/styles/obsidian.css";
+@import "highlight.js/styles/monokai.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .notion-code {
-  @apply bg-gray-800 rounded-xl px-4 py-2 w-full overflow-auto max-h-[600px] my-2;
+  @apply bg-slate-600 dark:bg-gray-800 text-white rounded-xl px-4 py-2 w-full overflow-auto max-h-[600px] my-4;
+}
+
+.notion-text-code {
+  @apply bg-slate-600 dark:bg-gray-800 text-white rounded-md px-1.5 py-0.5;
 }
 
 .notion-heading_1 {
-  @apply text-4xl text-center font-bold my-2;
-}
-
-.notion-heading_1 + p {
-  @apply text-center my-2;
+  @apply text-4xl font-bold mt-6 mb-2;
 }
 
 .notion-heading_2 {
@@ -23,20 +23,28 @@
   @apply text-2xl font-bold my-2;
 }
 
+.notion-bulleted_list {
+  @apply list-disc list-inside my-4;
+}
+
+.notion-bulleted_list_item {
+  @apply my-2;
+}
+
 .notion-image {
   @apply rounded-xl overflow-hidden w-full md:w-8/12 max-w-[800px] my-2 mx-auto;
 }
 
 .notion-callout {
-  @apply flex w-full bg-gray-800 p-2 rounded-xl my-2;
-}
-
-.notion-to_do_list {
-  @apply w-full my-2;
+  @apply flex w-full bg-gray-400 dark:bg-gray-800 p-2 rounded-xl my-2;
 }
 
 .notion-callout > .content {
   @apply italic;
+}
+
+.notion-to_do_list {
+  @apply w-full my-2;
 }
 
 .notion-table {
@@ -44,15 +52,15 @@
 }
 
 .notion-table_row:first-child {
-  @apply font-bold bg-gray-800;
+  @apply font-bold bg-gray-400 dark:bg-gray-800;
 }
 
 .notion-table_row {
-  @apply bg-gray-700 text-sm;
+  @apply bg-gray-300 dark:bg-gray-700 text-sm;
 }
 
 .notion-table_row:nth-child(2n) {
-  @apply bg-gray-600;
+  @apply bg-gray-200 dark:bg-gray-600;
 }
 
 .notion-table_cell {
