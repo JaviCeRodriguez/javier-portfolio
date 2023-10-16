@@ -18,7 +18,7 @@ export default async function Page() {
           <CardHeader>
             <div className="relative w-full h-36">
               <Image
-                src={page.cover.external.url}
+                src={(page.cover as any).external.url}
                 alt=""
                 fill
                 style={{
