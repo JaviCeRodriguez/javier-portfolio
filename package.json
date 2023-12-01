@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@notion-render/bookmark-plugin": "^0.0.2",
+    "@notion-render/client": "^0.0.2",
+    "@notion-render/hljs-plugin": "^0.0.2",
+    "@notionhq/client": "^2.2.13",
     "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-navigation-menu": "^1.1.3",
