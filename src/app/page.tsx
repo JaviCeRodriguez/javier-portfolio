@@ -2,18 +2,7 @@ import type { Metadata } from "next";
 import Presentation from "@/components/custom/presentation";
 
 export const metadata: Metadata = {
-  title: "Javier Rodriguez | Home",
-  description: "Home page",
-  keywords: [
-    "Mate",
-    "Javo",
-    "React",
-    "Typescript",
-    "Python",
-    "Data",
-    "Frontend",
-    "UI",
-  ],
+  title: "Home",
 };
 
 export default function Home() {
