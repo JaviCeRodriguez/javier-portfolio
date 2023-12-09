@@ -43,7 +43,7 @@ const BlogCardsGrid = ({ pages }: any) => {
   }
 
   return (
-    <div className="grid grid-cols-3 grid-flow-row gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
       {blogs.map((blog: any) => (
         <Link
           href={`/blog/${
@@ -72,7 +72,7 @@ const BlogCardsGrid = ({ pages }: any) => {
                   {(blog.properties.Description as any).rich_text[0].plain_text}
                 </span>
 
-                <span className="flex gap-1">
+                <span className="flex flex-wrap gap-1">
                   {(blog.properties.Tags as any).multi_select.map(
                     (tag: any) => (
                       <Badge
