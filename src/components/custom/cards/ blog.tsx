@@ -21,7 +21,7 @@ const BlogCardsGrid = ({ pages }: any) => {
 
   if (!blogs) {
     return (
-      <div className="grid grid-cols-3 grid-flow-row gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
         {Array.from({ length: 3 }).map((_, i) => (
           <Card key={i} className="p-6">
             <div className="relative w-full h-36 mb-2">
@@ -32,7 +32,6 @@ const BlogCardsGrid = ({ pages }: any) => {
               <Skeleton className="w-full h-20" />
             </div>
             <div className="flex flex-row gap-1">
-              <Skeleton className="w-1/4 h-4" />
               <Skeleton className="w-1/4 h-4" />
               <Skeleton className="w-1/4 h-4" />
             </div>
