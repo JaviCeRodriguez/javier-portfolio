@@ -2,7 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { Github, Hash, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -44,38 +45,35 @@ const Presentation = () => {
           You can find me on these social networks and platforms:
         </h3>
         <div className="flex flex-row flex-wrap gap-4 justify-center">
-          <Button variant="ghost" size="icon" asChild>
-            <Link
-              href="https://www.linkedin.com/in/rodriguezjavierc/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin className="text-blue-500" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link
-              href="https://twitter.com/javicerodriguez"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Twitter className="text-blue-400" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link
-              href="https://github.com/JaviCeRodriguez"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="mailto:javicerodriguez@gmail.com">
-              <Mail className="text-red-600" />
-            </Link>
-          </Button>
+          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+            <Button variant="ghost" size="icon" asChild>
+              <Link
+                href="https://twitter.com/javicerodriguez"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Twitter className="text-blue-400" />
+              </Link>
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+            <Button variant="ghost" size="icon" asChild>
+              <Link
+                href="https://github.com/JaviCeRodriguez"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github />
+              </Link>
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+            <Button variant="ghost" size="icon" asChild>
+              <Link href="mailto:javicerodriguez@gmail.com">
+                <Mail className="text-red-600" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </div>
     </div>

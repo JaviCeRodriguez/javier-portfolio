@@ -21,31 +21,32 @@ import {
 import { Button } from "@/components/ui/button";
 
 const navItemsData = [
-  {
-    name: "Home",
-    link: "/",
-    isExternal: false,
-  },
-  {
-    name: "Experience",
-    link: "/experience",
-    isExternal: false,
-  },
-  {
-    name: "Contact",
-    link: "/contact",
-    isExternal: false,
-  },
+  // {
+  //   name: "Home",
+  //   link: "/",
+  //   isExternal: false,
+  // },
+  // {
+  //   name: "Experience",
+  //   link: "/experience",
+  //   isExternal: false,
+  // },
+  // {
+  //   name: "Contact",
+  //   link: "/contact",
+  //   isExternal: false,
+  // },
   {
     name: "Blog",
-    link: "/",
-    isExternal: true,
+    link: "/blog",
+    isExternal: false,
   },
 ];
 
 const NavItemsTable: React.FC = () => {
   return (
-    <div className="hidden sm:flex">
+    // <div className="hidden sm:flex">
+    <div className="flex">
       {navItemsData.map((item) => {
         return (
           <NavigationMenuItem key={item.name}>
@@ -96,12 +97,14 @@ const NavItemsMobile: React.FC = () => {
 const Navbar = () => {
   return (
     <div className="flex flex-row justify-between items-center p-2 fixed top-0 w-full bg-background">
-      <h1 className="text-xl">🧉</h1>
+      <Link href="/" passHref>
+        <h1 className="text-xl">🧉</h1>
+      </Link>
 
       <NavigationMenu>
         <NavigationMenuList>
-          {/* <NavItemsTable />
-          <NavItemsMobile /> */}
+          <NavItemsTable />
+          {/* <NavItemsMobile /> */}
           <ModeToggle />
         </NavigationMenuList>
       </NavigationMenu>
