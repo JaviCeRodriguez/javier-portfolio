@@ -37,6 +37,11 @@ const navItemsData = [
   //   isExternal: false,
   // },
   {
+    name: "Discord",
+    link: "/discord",
+    isExternal: false,
+  },
+  {
     name: "Blog",
     link: "/blog",
     isExternal: false,
