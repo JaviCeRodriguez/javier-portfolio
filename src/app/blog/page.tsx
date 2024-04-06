@@ -1,22 +1,13 @@
-import { Metadata } from "next";
-import { getPages } from "@/utils/notion";
 import BlogCardsGrid from "@/components/custom/cards/ blog";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const pages = await getPages();
-
-  return {
-    title: "Blog",
-    description: pages
-      .map(
-        (page) => (page.properties.Description as any).rich_text[0].plain_text
-      )
-      .join(" / "),
-  };
-}
+import { getMediumArticles } from "@/utils/mediumArticles";
 
 export default async function Page() {
-  const pages = await getPages();
+  const articles = await getMediumArticles();
 
-  return <BlogCardsGrid pages={pages} />;
+  return (
+    <div className="container px-4 py-8 mx-auto">
+      <h2 className="mb-8 text-4xl font-bold">Latest articles</h2>
+      <BlogCardsGrid articles={articles.data} />
+    </div>
+  );
 }

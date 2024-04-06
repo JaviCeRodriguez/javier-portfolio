@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -11,20 +10,15 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Article } from "@/utils/mediumArticles";
 
-const BlogCardsGrid = ({ pages }: any) => {
-  const [blogs, setBlogs] = useState<any[] | null>(null);
-
-  useEffect(() => {
-    setBlogs(pages);
-  }, [pages]);
-
-  if (!blogs) {
+const BlogCardsGrid = ({ articles }: { articles: Article[] | null }) => {
+  if (!articles) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
+      <div className="grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {Array.from({ length: 3 }).map((_, i) => (
-          <Card key={i} className="p-6">
-            <div className="relative w-full h-36 mb-2">
+          <Card key={i + 1 - 1} className="p-6">
+            <div className="relative w-full mb-2 h-36">
               <Skeleton className="w-full h-full" />
             </div>
             <div className="flex flex-col gap-2 mb-2">
@@ -42,48 +36,42 @@ const BlogCardsGrid = ({ pages }: any) => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
-      {blogs.map((blog: any) => (
+    <div className="grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      {articles.map((article) => (
         <Link
-          href={`/blog/${
-            (blog.properties as any).Slug.rich_text[0].plain_text
-          }`}
-          key={blog.id}
+          href={article.link}
+          key={article.guid}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <Card>
             <CardHeader>
               <div className="relative w-full h-36">
                 <Image
-                  src={(blog.cover as any).external.url}
+                  src={article.imgCover}
                   alt=""
                   fill
                   style={{
                     objectFit: "cover",
                     objectPosition: "center",
                   }}
+                  priority
+                  sizes="(min-width: 640px) 640px, 100vw"
                 />
               </div>
-              <CardTitle>
-                {(blog.properties.Title as any).title[0].plain_text}
-              </CardTitle>
+              <CardTitle>{article.title}</CardTitle>
               <CardDescription className="flex flex-col gap-2">
-                <span>
-                  {(blog.properties.Description as any).rich_text[0].plain_text}
-                </span>
+                <span>{article.description}</span>
 
                 <span className="flex flex-wrap gap-1">
-                  {(blog.properties.Tags as any).multi_select.map(
-                    (tag: any) => (
-                      <Badge
-                        key={tag.name}
-                        style={{
-                          backgroundColor: tag.color,
-                        }}
-                      >
-                        {tag.name}
-                      </Badge>
-                    )
-                  )}
+                  {article.categories.map((tag) => (
+                    <Badge
+                      key={tag}
+                      className="bg-blue-800 dark:bg-blue-600 dark:text-white"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
                 </span>
               </CardDescription>
             </CardHeader>
