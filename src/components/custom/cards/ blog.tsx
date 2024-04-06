@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Article } from "@/app/blog/api/route";
+import { Article } from "@/utils/mediumArticles";
 
 const BlogCardsGrid = ({ articles }: { articles: Article[] | null }) => {
   if (!articles) {
