@@ -33,19 +33,19 @@ export const metadata: Metadata = {
     siteName: "Javier Rodriguez",
     images: [
       {
-        url: "https://javicerodriguez.com.ar/images/og_javo.jpg",
+        url: "https://javicerodriguez.com.ar/images/og_javo.png",
         width: 360,
         height: 128,
         alt: "Javier Rodriguez",
       },
       {
-        url: "https://javicerodriguez.com.ar/images/og_javo.jpg",
+        url: "https://javicerodriguez.com.ar/images/og_javo.png",
         width: 600,
         height: 212,
         alt: "Javier Rodriguez",
       },
       {
-        url: "https://javicerodriguez.com.ar/images/og_javo.jpg",
+        url: "https://javicerodriguez.com.ar/images/og_javo.png",
         width: 840,
         height: 297,
         alt: "Javier Rodriguez",
