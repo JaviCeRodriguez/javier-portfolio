@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Javier Rodriguez",
     default: "Javier Rodriguez",
   },
-  description: "Frontend developer and data scientist's apprentice 🧉",
+  description: "Frontend Dev and Data Engineer 🧉",
   keywords: [
     "Mate",
     "Javo",
@@ -29,19 +29,25 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Javier Rodriguez",
     url: "https://javicerodriguez.com.ar",
-    description: "Frontend developer and data scientist's apprentice 🧉",
+    description: "Frontend Dev and Data Engineer 🧉",
     siteName: "Javier Rodriguez",
     images: [
       {
-        url: "https://javicerodriguez.com.ar/images/javo.jpg",
+        url: "https://javicerodriguez.com.ar/images/og_javo.jpg",
         width: 360,
-        height: 270,
+        height: 128,
         alt: "Javier Rodriguez",
       },
       {
-        url: "https://javicerodriguez.com.ar/images/javo.jpg",
+        url: "https://javicerodriguez.com.ar/images/og_javo.jpg",
         width: 600,
-        height: 450,
+        height: 212,
+        alt: "Javier Rodriguez",
+      },
+      {
+        url: "https://javicerodriguez.com.ar/images/og_javo.jpg",
+        width: 840,
+        height: 297,
         alt: "Javier Rodriguez",
       },
     ],
