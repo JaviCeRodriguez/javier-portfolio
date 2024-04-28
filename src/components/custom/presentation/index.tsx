@@ -20,10 +20,10 @@ const Presentation = () => {
         quality={100}
       />
       <div className="flex flex-col">
-        <h1 className="text-4xl font-bold mb-2 lg:text-5xl">
+        <h1 className="mb-2 text-4xl font-bold lg:text-5xl">
           Javier Rodriguez
         </h1>
-        <h2 className="text-xl mb-4 font-semibold lg:text-2xl">
+        <h2 className="mb-4 text-xl font-semibold lg:text-2xl">
           Frontend Developer and Data Engineer
         </h2>
         <p className="mb-8">
@@ -41,10 +41,10 @@ const Presentation = () => {
           </a>
           &nbsp;since 2021 as a tech leader frontend.
         </p>
-        <h3 className="text-lg mb-4 lg:text-xl">
+        <h3 className="mb-4 text-lg lg:text-xl">
           You can find me on these social networks and platforms:
         </h3>
-        <div className="flex flex-row flex-wrap gap-4 justify-center">
+        <div className="flex flex-row flex-wrap justify-center gap-4">
           <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
             <Button variant="ghost" size="icon" asChild>
               <Link
@@ -53,6 +53,17 @@ const Presentation = () => {
                 rel="noopener noreferrer"
               >
                 <Twitter className="text-blue-400" />
+              </Link>
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+            <Button variant="ghost" size="icon" asChild>
+              <Link
+                href="https://www.linkedin.com/in/rodriguezjavierc/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="text-blue-500" />
               </Link>
             </Button>
           </motion.div>
