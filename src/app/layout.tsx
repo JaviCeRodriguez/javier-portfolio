@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { VercelToolbar } from "@vercel/toolbar/next";
+import { FlagValues } from "@vercel/flags/react";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -78,6 +79,7 @@ export default function RootLayout({
             {children}
             <Analytics />
             {shouldInjectToolbar && <VercelToolbar />}
+            <FlagValues values={{ experiences: true }} />
           </div>
         </ThemeProvider>
       </body>
