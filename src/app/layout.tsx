@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { VercelToolbar } from "@vercel/toolbar/next";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -61,6 +62,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const shouldInjectToolbar = process.env.NODE_ENV === "development";
   return (
     <html lang="en">
       <head>
@@ -75,6 +77,7 @@ export default function RootLayout({
           <div className="container mx-auto pt-20 min-h-[100vh]">
             {children}
             <Analytics />
+            {shouldInjectToolbar && <VercelToolbar />}
           </div>
         </ThemeProvider>
       </body>
