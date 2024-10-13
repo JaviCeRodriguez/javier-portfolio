@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Presentation from "@/components/custom/presentation";
 import HomeLinks from "@/components/client/home-links";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
