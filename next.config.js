@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "cdn-images-1.medium.com",
+        hostname: "media.dev.to",
       },
     ],
   },
