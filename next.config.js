@@ -5,6 +5,9 @@ const nextConfig = {
       {
         hostname: "media.dev.to",
       },
+      {
+        hostname: "media2.dev.to",
+      },
     ],
   },
 };
