@@ -59,7 +59,7 @@ const NavItemsTable: React.FC = () => {
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 {item.name}
                 {item.isExternal && (
-                  <ExternalLink className="relative ml-2 h-3 w-3" />
+                  <ExternalLink className="relative w-3 h-3 ml-2" />
                 )}
               </NavigationMenuLink>
             </Link>
@@ -87,7 +87,7 @@ const NavItemsMobile: React.FC = () => {
                 <>
                   <p>{item.name}</p>
                   {item.isExternal && (
-                    <ExternalLink className="relative ml-2 h-3 w-3" />
+                    <ExternalLink className="relative w-3 h-3 ml-2" />
                   )}
                 </>
               </Link>
@@ -101,7 +101,7 @@ const NavItemsMobile: React.FC = () => {
 
 const Navbar = () => {
   return (
-    <div className="flex flex-row justify-between items-center p-2 fixed top-0 w-full bg-background">
+    <div className="fixed top-0 z-50 flex flex-row items-center justify-between w-full p-2 bg-background">
       <Link href="/" passHref>
         <h1 className="text-xl">🧉</h1>
       </Link>
