@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  FolderGit2,
   Github,
   Linkedin,
   Mail,
@@ -11,18 +12,24 @@ import {
 import { HomeLink } from "@/components/custom/buttons/home-link";
 
 const links = [
-  {
-    title: "About",
-    href: "/about",
-    Icon: UserRoundPen,
-    isExternal: false,
-  },
+  //{
+  //  title: "About",
+  //  href: "/about",
+  //  Icon: UserRoundPen,
+  //  isExternal: false,
+  //},
   {
     title: "Blog",
     href: "/blog",
     Icon: Rss,
     isExternal: false,
   },
+  //{
+  //  title: "Projects",
+  //  href: "/projects",
+  //  Icon: FolderGit2,
+  //  isExternal: false,
+  //},
   {
     title: "GitHub",
     href: "https://github.com/JaviCeRodriguez",

@@ -21,7 +21,6 @@ export const HomeLink = ({ title, href, Icon, isExternal = false }: Props) => {
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      passHref={!isExternal}
     >
       <Button variant="outline" className="justify-between w-full h-14 group">
         <span className="flex items-center gap-2">
