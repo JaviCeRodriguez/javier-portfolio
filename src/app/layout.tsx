@@ -70,15 +70,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} relative`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <div className="container mx-auto py-20 min-h-[100vh] flex flex-col">
-            <main className="flex items-center justify-center flex-grow">
-              {children}
-            </main>
-            <Analytics />
-          </div>
-        </ThemeProvider>
+        <Navbar />
+        <div className="container mx-auto py-20 min-h-[100vh] flex flex-col">
+          <main className="flex items-center justify-center flex-grow">
+            {children}
+          </main>
+          <Analytics />
+        </div>
       </body>
     </html>
   );

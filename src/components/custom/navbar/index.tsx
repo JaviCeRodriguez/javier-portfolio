@@ -11,7 +11,6 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { ModeToggle } from "@/components/custom/toggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -109,8 +108,6 @@ const Navbar = () => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavItemsTable />
-          {/* <NavItemsMobile /> */}
-          <ModeToggle />
         </NavigationMenuList>
       </NavigationMenu>
     </div>
