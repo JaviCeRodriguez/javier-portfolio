@@ -28,7 +28,7 @@ const BlogPageContent = () => {
   return (
     <div className="space-y-8">
       {data?.pages.map((page, i) => (
-        <div key={i} className="space-y-8">
+        <div key={i} className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {page.articles.map((article) => (
             <BlogArticle key={article.id} article={article} />
           ))}
