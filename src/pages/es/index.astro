@@ -1,8 +1,75 @@
 ---
 import MainLayout from "@/layouts/main.astro";
+import Card from "@/components/card.astro";
+import { useTranslations } from "@/i18n/utils";
+
+const t = useTranslations("es");
 ---
 
 <MainLayout>
-  <h1 class="text-3xl font-bold">Javo 🧉</h1>
-  <p>En construcción 🚧</p>
+  <h1 class="text-3xl font-bold mb-10">Javo 🧉</h1>
+
+  <section class="space-y-4">
+    <Card title={t("about.title") as string}>
+      <p class="text-sm">
+        {t("about.description")}
+        <a
+          href="https://www.incubator.com.ar/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-green-500 font-semibold">@Incubator</a
+        >.
+      </p>
+      <p class="text-sm">
+        {t("about.content")}
+      </p>
+    </Card>
+
+    <Card title={t("tech.title") as string}>
+      <p class="text-sm">
+        {t("tech.description")[0]}
+        <span class="text-blue-400 font-semibold">React</span>
+        {t("tech.description")[1]}
+        <span class="text-blue-600 font-semibold">TypeScript</span>
+        {t("tech.description")[2]}
+        <span class="text-yellow-500 font-semibold">Python</span>.
+      </p>
+      <p class="text-sm">
+        {t("tech.content")[0]}
+        <span class="text-red-600 font-semibold">Nest.js</span>
+        {t("tech.content")[1]}
+        <span class="text-green-700 font-semibold">Django</span>.
+      </p>
+    </Card>
+
+    <Card title={t("contact.title") as string}>
+      <p class="text-sm">
+        <a
+          href="mailto:contacto@javo.com.ar"
+          class="text-blue-500 font-semibold">contacto@javo.com.ar</a
+        >
+      </p>
+      <p class="text-sm">
+        {t("contact.description")[0]}
+        <a
+          href="https://github.com/JaviCeRodriguez"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-purple-500 font-semibold">GitHub</a
+        >, <a
+          href="https://www.linkedin.com/in/rodriguezjavierc"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-400 font-semibold">LinkedIn</a
+        >
+        {t("contact.description")[1]}
+        <a
+          href="https://x.com/javicerodriguez"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-slate-500 font-semibold">X</a
+        >.
+      </p>
+    </Card>
+  </section>
 </MainLayout>
