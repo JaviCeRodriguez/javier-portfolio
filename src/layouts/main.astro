@@ -1,5 +1,10 @@
 ---
 import "@/styles/global.css";
+import { getLangFromUrl, getRouteFromUrl } from "@/i18n/utils";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+
+const currentLang = getLangFromUrl(Astro.url);
+const currentRoute = getRouteFromUrl(Astro.url);
 ---
 
 <html lang="en">
@@ -11,6 +16,13 @@ import "@/styles/global.css";
     <title>Javo 🧉</title>
   </head>
   <body class="bg-neutral-900 text-white container mx-auto py-4">
+    <nav class="flex justify-end mb-4">
+      <LanguageSwitcher
+        client:load
+        currentLang={currentLang}
+        currentRoute={currentRoute}
+      />
+    </nav>
     <slot />
   </body>
 </html>

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-switch": "^1.2.5",
     "@tailwindcss/vite": "^4.1.7",
     "@types/react": "^19.1.5",
