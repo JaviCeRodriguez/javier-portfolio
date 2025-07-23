@@ -28,17 +28,27 @@ const t = useTranslations("es");
     <Card title={t("tech.title") as string}>
       <p class="text-sm">
         {t("tech.description")[0]}
-        <span class="text-blue-400 font-semibold">React</span>
+        <span class="px-2 py-0.5 rounded bg-blue-600 text-white font-semibold"
+          >React</span
+        >
         {t("tech.description")[1]}
-        <span class="text-blue-600 font-semibold">TypeScript</span>
+        <span class="px-2 py-0.5 rounded bg-blue-600 text-white font-semibold"
+          >TypeScript</span
+        >
         {t("tech.description")[2]}
-        <span class="text-yellow-500 font-semibold">Python</span>.
+        <span class="px-2 py-0.5 rounded bg-yellow-500 text-black font-semibold"
+          >Python</span
+        >.
       </p>
       <p class="text-sm">
         {t("tech.content")[0]}
-        <span class="text-red-600 font-semibold">Nest.js</span>
+        <span class="px-2 py-0.5 rounded bg-red-700 text-white font-semibold"
+          >Nest.js</span
+        >
         {t("tech.content")[1]}
-        <span class="text-green-700 font-semibold">Django</span>.
+        <span class="px-2 py-0.5 rounded bg-green-800 text-white font-semibold"
+          >Django</span
+        >.
       </p>
     </Card>
 
@@ -55,20 +65,36 @@ const t = useTranslations("es");
           href="https://github.com/JaviCeRodriguez"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-purple-500 font-semibold">GitHub</a
-        >, <a
+          class="font-semibold"
+        >
+          <span
+            class="px-2 py-0.5 rounded bg-purple-700 text-white font-semibold"
+            >GitHub</span
+          >
+        </a>
+        , <a
           href="https://www.linkedin.com/in/rodriguezjavierc"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-blue-400 font-semibold">LinkedIn</a
+          class="font-semibold"
         >
+          <span class="px-2 py-0.5 rounded bg-blue-700 text-white font-semibold"
+            >LinkedIn</span
+          >
+        </a>
         {t("contact.description")[1]}
         <a
           href="https://x.com/javicerodriguez"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate-500 font-semibold">X</a
-        >.
+          class="font-semibold"
+        >
+          <span
+            class="px-2 py-0.5 rounded bg-slate-800 text-white font-semibold"
+            >X</span
+          >
+        </a>
+        .
       </p>
     </Card>
   </section>
