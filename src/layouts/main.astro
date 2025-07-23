@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import { getLangFromUrl, getRouteFromUrl } from "@/i18n/utils";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import Navigation from "@/components/navigation.astro";
 
 const currentLang = getLangFromUrl(Astro.url);
 const currentRoute = getRouteFromUrl(Astro.url);
@@ -16,13 +17,15 @@ const currentRoute = getRouteFromUrl(Astro.url);
     <title>Javo 🧉</title>
   </head>
   <body class="bg-neutral-900 text-white container max-w-5xl mx-auto p-4">
-    <nav class="flex justify-end mb-4">
+    <nav class="flex justify-between items-center mb-4">
+      <Navigation currentPath={Astro.url.pathname} currentLang={currentLang} />
       <LanguageSwitcher
         client:load
         currentLang={currentLang}
         currentRoute={currentRoute}
       />
     </nav>
+
     <slot />
   </body>
 </html>

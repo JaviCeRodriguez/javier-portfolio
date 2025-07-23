@@ -1,0 +1,30 @@
+---
+import MainLayout from "@/layouts/main.astro";
+import Card from "@/components/card.astro";
+---
+
+<MainLayout>
+  <h1 class="text-3xl font-bold mb-10">Blog</h1>
+  <section class="space-y-4">
+    <Card title="Welcome to the Blog">
+      <p class="text-sm">
+        This is a placeholder blog page. Here you'll find posts about web
+        development, technology, and other interesting topics.
+      </p>
+    </Card>
+
+    <Card title="Sample Post 1">
+      <p class="text-sm">
+        This is a sample blog post. In a real blog, this would contain actual
+        content about various topics related to development and technology.
+      </p>
+    </Card>
+
+    <Card title="Sample Post 2">
+      <p class="text-sm">
+        Another sample blog post to demonstrate the layout and styling of the
+        blog page.
+      </p>
+    </Card>
+  </section>
+</MainLayout>
