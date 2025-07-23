@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "./button";
 import type { languages } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
 
 interface NavigationProps {
   currentPath?: string;
@@ -14,10 +15,12 @@ export function Navigation({
   currentLang,
 }: NavigationProps) {
   const routeLang = currentLang === "es" ? "/es" : "";
+  const t = useTranslations(currentLang);
 
   const navItems = [
-    { label: "Home", href: `${routeLang}/` },
-    // { label: "Blog", href: `${routeLang}/blog` },
+    { label: t("nav.home"), href: `${routeLang}/` },
+    { label: t("nav.bookmarks"), href: `${routeLang}/bookmarks` },
+    // { label: t("nav.blog"), href: `${routeLang}/blog` },
   ];
 
   return (

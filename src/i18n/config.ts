@@ -20,6 +20,11 @@ export const ui = {
     "tech.content": ["Aprendiendo sobre tecnologías para backend para", "y"],
     "contact.title": "📫 Contacto",
     "contact.description": ["También me encontrás en", "y en"],
+    "bookmarks.title": "🔖 Marcadores",
+    "bookmarks.category.person": "Sitios personales",
+    "bookmarks.category.concepts": "Conceptos y teoría",
+    "nav.home": "Inicio",
+    "nav.bookmarks": "Marcadores",
   },
   en: {
     "about.title": "🙋🏼 About me",
@@ -35,5 +40,10 @@ export const ui = {
     "tech.content": ["Learning about backend technologies for", "and"],
     "contact.title": "📫 Contact",
     "contact.description": ["You can also find me on", "and"],
+    "bookmarks.title": "🔖 Bookmarks",
+    "bookmarks.category.person": "Personal sites",
+    "bookmarks.category.concepts": "Concepts and theory",
+    "nav.home": "Home",
+    "nav.bookmarks": "Bookmarks",
   },
 } as const;
