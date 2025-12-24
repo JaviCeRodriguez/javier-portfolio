@@ -7,8 +7,8 @@ import { Navigation } from "@/components/navigation"
 export const revalidate = 60 // Revalidate every 60 seconds
 
 export default async function BlogPage() {
-  let posts = []
-  let error = null
+  let posts: any[] = [] // TODO: Add type
+  let error: any = null
 
   try {
     posts = await getBlogPosts()
