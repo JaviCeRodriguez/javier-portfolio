@@ -4,6 +4,7 @@ import { NotionRenderer } from "@/components/notion-renderer";
 import { Navigation } from "@/components/navigation";
 import { Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { TableOfContents } from "@/components/table-of-contents";
 
 export const revalidate = 60;
 
@@ -30,6 +31,8 @@ export default async function BlogPostPage({
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
+
+      <TableOfContents blocks={post.blocks} />
 
       <article className="container mx-auto px-4 py-24 max-w-3xl">
         <Link

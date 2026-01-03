@@ -31,21 +31,30 @@ function NotionBlock({ block }: { block: any }) {
 
     case "heading_1":
       return (
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mt-8 mb-4">
+        <h1
+          id={id}
+          className="text-3xl md:text-4xl font-bold text-foreground mt-8 mb-4 scroll-mt-24"
+        >
           <RichText text={block.heading_1.rich_text} />
         </h1>
       );
 
     case "heading_2":
       return (
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-6 mb-3">
+        <h2
+          id={id}
+          className="text-2xl md:text-3xl font-bold text-foreground mt-6 mb-3 scroll-mt-24"
+        >
           <RichText text={block.heading_2.rich_text} />
         </h2>
       );
 
     case "heading_3":
       return (
-        <h3 className="text-xl md:text-2xl font-bold text-foreground mt-4 mb-2">
+        <h3
+          id={id}
+          className="text-xl md:text-2xl font-bold text-foreground mt-4 mb-2 scroll-mt-24"
+        >
           <RichText text={block.heading_3.rich_text} />
         </h3>
       );
