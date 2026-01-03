@@ -1,29 +1,30 @@
-import { notFound } from "next/navigation"
-import { getPostBySlug, getBlogPosts } from "@/lib/notion"
-import { NotionRenderer } from "@/components/notion-renderer"
-import { Navigation } from "@/components/navigation"
-import { Calendar, ArrowLeft } from "lucide-react"
-import Link from "next/link"
+import { notFound } from "next/navigation";
+import { getPostBySlug, getBlogPosts } from "@/lib/notion";
+import { NotionRenderer } from "@/components/notion-renderer";
+import { Navigation } from "@/components/navigation";
+import { Calendar, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
-export const revalidate = 60
+export const revalidate = 60;
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts()
+  const posts = await getBlogPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string }
+  params: { slug: string };
 }) {
-  const post = await getPostBySlug(params.slug)
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -61,15 +62,24 @@ export default async function BlogPostPage({
             </time>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">{post.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+            {post.title}
+          </h1>
 
-          {post.excerpt && <p className="text-xl text-muted-foreground text-pretty">{post.excerpt}</p>}
+          {post.excerpt && (
+            <p className="text-xl text-muted-foreground text-pretty">
+              {post.excerpt}
+            </p>
+          )}
         </header>
 
-        <div className="animate-fade-in-up" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
+        <div
+          className="animate-fade-in-up"
+          style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}
+        >
           <NotionRenderer blocks={post.blocks} />
         </div>
       </article>
     </main>
-  )
+  );
 }
