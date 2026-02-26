@@ -29,60 +29,53 @@ export default async function BlogPostPage({
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <Navigation />
-
       <TableOfContents blocks={post.blocks} />
-
-      <article className="container mx-auto px-4 py-24 max-w-3xl">
+      <main className="md:ml-36 pt-12 md:pt-12 px-5 sm:px-8 max-w-2xl pb-20 mt-11 md:mt-0">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 group"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 no-underline hover:underline"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft className="w-3 h-3" />
           Back to blog
         </Link>
 
-        <header className="mb-12 animate-fade-in-up">
-          {post.coverImage && (
-            <div className="aspect-video w-full overflow-hidden rounded-lg mb-8">
-              <img
-                src={post.coverImage || "/placeholder.svg"}
-                alt={post.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-            <Calendar className="w-4 h-4" />
-            <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </div>
-
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
-            {post.title}
-          </h1>
-
-          {post.excerpt && (
-            <p className="text-xl text-muted-foreground text-pretty">
-              {post.excerpt}
+        <article>
+          <header className="mb-6">
+            {post.coverImage && (
+              <div className="w-full overflow-hidden mb-6">
+                <img
+                  src={post.coverImage || "/placeholder.svg"}
+                  alt={post.title}
+                  className="w-full max-h-64 object-cover"
+                />
+              </div>
+            )}
+            <p className="text-xs font-mono text-muted-foreground mb-2">
+              <time dateTime={post.date}>
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
             </p>
-          )}
-        </header>
-
-        <div
-          className="animate-fade-in-up"
-          style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}
-        >
-          <NotionRenderer blocks={post.blocks} />
-        </div>
-      </article>
-    </main>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 text-balance">
+              {post.title}
+            </h1>
+            {post.excerpt && (
+              <p className="text-base text-muted-foreground italic text-pretty">
+                {post.excerpt}
+              </p>
+            )}
+          </header>
+          <hr className="mb-6" />
+          <div className="prose-document">
+            <NotionRenderer blocks={post.blocks} />
+          </div>
+        </article>
+      </main>
+    </>
   );
 }

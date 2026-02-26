@@ -1,16 +1,25 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Source_Serif_4, Source_Code_Pro } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "600", "700"],
+});
+
+const sourceCode = Source_Code_Pro({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500"],
+});
 
 export const metadata: Metadata = {
-  title: "Frontend Engineer Portfolio",
+  title: "Javier Rodriguez — Frontend Engineer",
   description:
-    "A modern portfolio showcasing frontend development skills and expertise",
+    "Personal homepage of Javier Rodriguez, Tech Lead Frontend Engineer specializing in React, TypeScript, and Next.js.",
   generator: "v0.app",
   icons: {
     icon: [
@@ -39,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${sourceSerif.variable} ${sourceCode.variable} font-sans antialiased`}
       >
         {children}
         <Analytics />

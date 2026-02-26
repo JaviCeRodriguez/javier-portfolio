@@ -6,12 +6,15 @@ import { Navigation } from "@/components/navigation"
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <Navigation />
-      <Hero />
-      <Skills />
-      <Experience />
-      <Contact />
-    </main>
+      {/* Main content offset for desktop sidebar */}
+      <main className="md:ml-36 pt-12 md:pt-12 px-5 sm:px-8 max-w-2xl pb-20 mt-11 md:mt-0">
+        <Hero />
+        <Skills />
+        <Experience />
+        <Contact />
+      </main>
+    </>
   )
 }
