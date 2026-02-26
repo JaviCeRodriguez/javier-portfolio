@@ -4,13 +4,14 @@ export function Hero() {
   return (
     <section id="about">
       <div className="flex flex-col sm:flex-row gap-6 items-start mb-6">
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 w-36 sm:w-44">
           <Image
             src="/mate-mac.jpg"
             alt="Javier Rodriguez"
-            width={140}
-            height={140}
-            className="rounded-sm object-cover"
+            width={176}
+            height={280}
+            className="rounded-sm object-cover object-top w-full h-auto"
+            style={{ aspectRatio: "9 / 14" }}
             priority
           />
         </div>
