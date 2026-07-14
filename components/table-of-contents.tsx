@@ -84,14 +84,17 @@ export function TableOfContents({ blocks }: TableOfContentsProps) {
     <>
       <Button
         onClick={() => setIsMobileOpen(true)}
-        className="xl:hidden fixed bottom-6 right-6 z-40 rounded-full w-14 h-14 shadow-lg"
+        aria-label="Abrir índice del artículo"
+        className="fixed bottom-5 right-5 z-40 size-12 rounded-md shadow-lg xl:hidden"
         size="icon"
       >
         <List className="w-6 h-6" />
       </Button>
 
       {isMobileOpen && (
-        <div
+        <button
+          type="button"
+          aria-label="Cerrar índice del artículo"
           className="xl:hidden fixed inset-0 bg-black/50 z-50"
           onClick={() => setIsMobileOpen(false)}
         />
@@ -105,10 +108,11 @@ export function TableOfContents({ blocks }: TableOfContentsProps) {
         <div className="p-4 border-b border-border flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
             <List className="w-4 h-4" />
-            <span>On this page</span>
+            <span>En esta página</span>
           </div>
           <Button
             onClick={() => setIsMobileOpen(false)}
+            aria-label="Cerrar índice del artículo"
             variant="ghost"
             size="icon"
             className="h-8 w-8"
@@ -142,10 +146,10 @@ export function TableOfContents({ blocks }: TableOfContentsProps) {
 
       {/* Desktop fixed sidebar */}
       <aside className="hidden xl:block fixed right-8 top-32 w-64 max-h-[calc(100vh-200px)] overflow-y-auto">
-        <div className="sticky top-0 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 border border-border rounded-lg p-4">
+        <div className="sticky top-0 border-l border-border bg-background/90 p-5 backdrop-blur">
           <div className="flex items-center gap-2 mb-3 text-sm font-semibold text-foreground">
             <List className="w-4 h-4" />
-            <span>On this page</span>
+            <span>En esta página</span>
           </div>
           <nav>
             <ul className="space-y-2 text-sm">
