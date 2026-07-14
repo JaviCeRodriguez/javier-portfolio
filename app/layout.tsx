@@ -1,42 +1,36 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Source_Serif_4, Source_Code_Pro } from "next/font/google";
+import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const sourceSerif = Source_Serif_4({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "600", "700"],
+  variable: "--font-manrope",
+  display: "swap",
 });
 
-const sourceCode = Source_Code_Pro({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-plex-mono",
   weight: ["400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Javier Rodriguez — Frontend Engineer",
+  metadataBase: new URL("https://javo.com.ar"),
+  title: {
+    default: "Javier Rodriguez | Frontend Engineer",
+    template: "%s | Javier Rodriguez",
+  },
   description:
-    "Personal homepage of Javier Rodriguez, Tech Lead Frontend Engineer specializing in React, TypeScript, and Next.js.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    "Tech Lead Frontend enfocado en construir productos claros y sólidos con React, TypeScript y Next.js.",
+  openGraph: {
+    title: "Javier Rodriguez | Frontend Engineer",
+    description:
+      "Tech Lead Frontend enfocado en construir productos claros y sólidos con React, TypeScript y Next.js.",
+    type: "website",
+    locale: "es_AR",
   },
 };
 
@@ -46,10 +40,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${sourceSerif.variable} ${sourceCode.variable} font-sans antialiased`}
-      >
+    <html lang="es-AR">
+      <body className={`${manrope.variable} ${plexMono.variable} antialiased`}>
+        <a href="#main-content" className="skip-link">
+          Ir al contenido
+        </a>
         {children}
         <Analytics />
       </body>

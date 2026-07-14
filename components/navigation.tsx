@@ -1,122 +1,77 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { name: "About", href: "/#about" },
-  { name: "Skills", href: "/#skills" },
-  { name: "Experience", href: "/#experience" },
+  { name: "Sobre mí", href: "/#about" },
+  { name: "Habilidades", href: "/#skills" },
+  { name: "Experiencia", href: "/#experience" },
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/#contact" },
-]
+  { name: "Contacto", href: "/#contact" },
+];
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
-
-  const handleNavClick = (href: string) => {
-    if (href.startsWith("/#")) {
-      if (pathname !== "/") {
-        window.location.href = href
-      } else {
-        const element = document.querySelector(href.substring(1))
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" })
-        }
-      }
-    }
-    setIsOpen(false)
-  }
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <>
-      {/* Desktop: vertical sidebar */}
-      <nav
-        className="hidden md:block fixed top-0 left-0 h-full w-36 pt-12 pl-6 pr-4"
-        aria-label="Site navigation"
-      >
-        <ul className="space-y-3 text-sm">
-          {navItems.map((item) =>
-            item.href === "/blog" ? (
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <nav className="site-container flex h-[4.5rem] items-center justify-between" aria-label="Navegación principal">
+        <Link href="/" className="group flex items-center gap-3 no-underline" onClick={() => setIsOpen(false)}>
+          <span className="grid size-9 place-items-center rounded-md bg-foreground font-mono text-xs font-medium text-background transition-transform group-hover:-rotate-3">
+            JR
+          </span>
+          <span className="text-sm font-extrabold tracking-[-0.03em]">Javier Rodriguez</span>
+        </Link>
+
+        <ul className="hidden items-center gap-7 text-sm font-semibold md:flex">
+          {navItems.map((item) => {
+            const active = item.href === "/blog" && pathname.startsWith("/blog");
+            return (
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors no-underline hover:underline"
+                  className={`relative py-2 no-underline transition-colors hover:text-accent ${active ? "text-accent" : "text-foreground"}`}
+                >
+                  {item.name}
+                  {active && <span className="absolute inset-x-0 -bottom-[1.18rem] h-0.5 bg-accent" />}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen((open) => !open)}
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={isOpen}
+          className="grid size-10 place-items-center rounded-md border border-border text-foreground transition-colors hover:bg-muted md:hidden"
+        >
+          {isOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+        </button>
+      </nav>
+
+      {isOpen && (
+        <div className="border-t border-border bg-background md:hidden">
+          <ul className="site-container grid py-3">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block py-3 text-lg font-semibold no-underline transition-colors hover:text-accent"
                 >
                   {item.name}
                 </Link>
               </li>
-            ) : (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleNavClick(item.href)
-                  }}
-                  className="text-muted-foreground hover:text-foreground transition-colors no-underline hover:underline cursor-pointer"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ),
-          )}
-        </ul>
-      </nav>
-
-      {/* Mobile: top bar */}
-      <nav
-        className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background border-b border-border"
-        aria-label="Site navigation"
-      >
-        <div className="flex items-center justify-between px-4 h-11">
-          <Link href="/" className="text-sm font-semibold no-underline text-foreground">
-            Javier Rodriguez
-          </Link>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            className="p-1 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </button>
+            ))}
+          </ul>
         </div>
-        {isOpen && (
-          <div className="bg-background border-b border-border px-4 pb-3">
-            <ul className="space-y-2 text-sm pt-2">
-              {navItems.map((item) =>
-                item.href === "/blog" ? (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ) : (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        handleNavClick(item.href)
-                      }}
-                      className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-        )}
-      </nav>
-    </>
-  )
+      )}
+    </header>
+  );
 }

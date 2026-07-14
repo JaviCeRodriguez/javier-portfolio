@@ -1,5 +1,3 @@
-"use client";
-
 import type React from "react";
 
 import { Fragment } from "react";
@@ -10,7 +8,7 @@ interface NotionRendererProps {
 
 export function NotionRenderer({ blocks }: NotionRendererProps) {
   return (
-    <div className="notion-content space-y-4">
+    <div className="notion-content space-y-5">
       {blocks.map((block) => (
         <NotionBlock key={block.id} block={block} />
       ))}
@@ -33,7 +31,7 @@ function NotionBlock({ block }: { block: any }) {
       return (
         <h1
           id={id}
-          className="text-3xl md:text-4xl font-bold text-foreground mt-8 mb-4 scroll-mt-24"
+          className="mt-14 mb-5 scroll-mt-28 text-4xl font-semibold text-foreground md:text-5xl"
         >
           <RichText text={block.heading_1.rich_text} />
         </h1>
@@ -43,7 +41,7 @@ function NotionBlock({ block }: { block: any }) {
       return (
         <h2
           id={id}
-          className="text-2xl md:text-3xl font-bold text-foreground mt-6 mb-3 scroll-mt-24"
+          className="mt-12 mb-4 scroll-mt-28 text-3xl font-semibold text-foreground md:text-4xl"
         >
           <RichText text={block.heading_2.rich_text} />
         </h2>
@@ -53,7 +51,7 @@ function NotionBlock({ block }: { block: any }) {
       return (
         <h3
           id={id}
-          className="text-xl md:text-2xl font-bold text-foreground mt-4 mb-2 scroll-mt-24"
+          className="mt-9 mb-3 scroll-mt-28 text-2xl font-semibold text-foreground"
         >
           <RichText text={block.heading_3.rich_text} />
         </h3>
@@ -92,14 +90,14 @@ function NotionBlock({ block }: { block: any }) {
       const code = block.code.rich_text.map((t: any) => t.plain_text).join("");
 
       return (
-        <div className="my-6 rounded-lg overflow-hidden bg-[#1e1e2e] border border-[#313244]">
-          <div className="flex items-center justify-between px-4 py-2 bg-[#181825] border-b border-[#313244]">
-            <span className="text-xs text-[#cdd6f4] font-mono uppercase tracking-wider">
+        <div className="my-8 overflow-hidden rounded-lg border border-border bg-muted/60">
+          <div className="flex items-center justify-between border-b border-border px-4 py-2">
+            <span className="font-mono text-xs text-muted-foreground">
               {language}
             </span>
           </div>
           <pre className="p-6 overflow-x-auto">
-            <code className="text-sm font-mono text-[#cdd6f4] leading-relaxed whitespace-pre">
+            <code className="whitespace-pre font-mono text-sm leading-relaxed text-foreground">
               {code}
             </code>
           </pre>
@@ -108,7 +106,7 @@ function NotionBlock({ block }: { block: any }) {
 
     case "quote":
       return (
-        <blockquote className="border-l-4 border-accent pl-4 py-2 my-4 italic text-muted-foreground">
+        <blockquote className="my-8 border-l-2 border-accent py-2 pl-6 text-xl font-medium text-foreground">
           <RichText text={block.quote.rich_text} />
           {block.children && block.children.length > 0 && (
             <div className="mt-2 space-y-2">
@@ -129,10 +127,11 @@ function NotionBlock({ block }: { block: any }) {
 
       return (
         <figure className="my-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imageUrl || "/placeholder.svg"}
-            alt={caption || "Blog image"}
-            className="w-full rounded-lg"
+            alt={caption || "Imagen del artículo"}
+            className="w-full rounded-xl"
           />
           {caption && (
             <figcaption className="text-sm text-muted-foreground text-center mt-2">
@@ -144,7 +143,7 @@ function NotionBlock({ block }: { block: any }) {
 
     case "callout":
       return (
-        <div className="flex gap-3 p-4 my-4 bg-muted rounded-lg border border-border">
+        <div className="my-6 flex gap-3 rounded-lg border-l-2 border-accent bg-muted/60 p-5">
           {block.callout.icon?.emoji && (
             <span className="text-2xl">{block.callout.icon.emoji}</span>
           )}
@@ -163,7 +162,7 @@ function NotionBlock({ block }: { block: any }) {
 
     case "toggle":
       return (
-        <details className="my-2 p-4 bg-muted/50 rounded-lg">
+        <details className="my-4 rounded-lg border border-border bg-muted/40 p-5">
           <summary className="cursor-pointer font-medium text-foreground">
             <RichText text={block.toggle.rich_text} />
           </summary>
@@ -200,7 +199,7 @@ function RichText({ text }: { text: any[] }) {
 
         if (code) {
           element = (
-            <code className="px-2 py-1 bg-[#1e1e2e] text-[#89b4fa] rounded text-[0.9em] font-mono border border-[#313244]">
+            <code className="rounded-sm bg-muted px-1.5 py-0.5 font-mono text-[0.9em] text-accent">
               {element}
             </code>
           );
@@ -226,7 +225,7 @@ function RichText({ text }: { text: any[] }) {
           element = (
             <a
               href={href}
-              className="text-[#89b4fa] hover:text-[#74c7ec] hover:underline transition-colors"
+              className="text-accent underline underline-offset-4 transition-colors hover:text-foreground"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -39,10 +39,6 @@ async function notionFetch(endpoint: string, options: RequestInit = {}) {
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const databaseId = process.env.NOTION_DATABASE_ID
 
-  console.log("[v0] Getting blog posts...")
-  console.log("[v0] NOTION_API_KEY exists:", !!process.env.NOTION_API_KEY)
-  console.log("[v0] NOTION_DATABASE_ID:", databaseId)
-
   if (!databaseId) {
     throw new Error("NOTION_DATABASE_ID is not defined")
   }
@@ -60,11 +56,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       }),
     })
 
-    console.log("[v0] Query successful, results:", data.results?.length || 0)
-
     return data.results.map((page: any) => {
-      console.log("[v0] Page properties:", Object.keys(page.properties || {}))
-
       const title =
         page.properties.Title?.title?.[0]?.plain_text || page.properties.Name?.title?.[0]?.plain_text || "Untitled"
       const slug = page.properties.Slug?.rich_text?.[0]?.plain_text || page.id
@@ -89,7 +81,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       }
     })
   } catch (error: any) {
-    console.error("[v0] Error querying database:", error.message)
+    console.error("Error querying the Notion database:", error.message)
     throw error
   }
 }
