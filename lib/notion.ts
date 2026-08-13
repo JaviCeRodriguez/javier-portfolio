@@ -44,15 +44,20 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   }
 
   try {
+    const publishedPostsFilter =
+      process.env.NODE_ENV === "production"
+        ? {
+            property: "Status",
+            status: {
+              equals: "Published",
+            },
+          }
+        : undefined
+
     const data = await notionFetch(`databases/${databaseId}/query`, {
       method: "POST",
       body: JSON.stringify({
-        filter: {
-          property: "Status",
-          status: {
-            equals: "Published",
-          },
-        },
+        filter: publishedPostsFilter,
       }),
     })
 
