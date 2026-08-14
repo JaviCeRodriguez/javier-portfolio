@@ -1,7 +1,8 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
-import { getBlogPosts, type BlogPost } from "@/lib/notion";
+import { getBlogPostSummaries, type BlogPostSummary } from "@/lib/notion";
 
 export const revalidate = 60;
 
@@ -25,16 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function BlogPage() {
-  let posts: BlogPost[] = [];
-  let error: string | null = null;
-
-  try {
-    posts = await getBlogPosts();
-  } catch (caughtError) {
-    error = caughtError instanceof Error ? caughtError.message : "No se pudo cargar el blog.";
-  }
-
+export default function BlogPage() {
   return (
     <>
       <Navigation />
@@ -49,7 +41,26 @@ export default async function BlogPage() {
           </p>
         </header>
 
-        <section aria-label="Artículos publicados" className="mt-16 border-t border-border md:ml-[16.66%] md:mt-24">
+        <Suspense fallback={<BlogPostListLoading />}>
+          <BlogPostList />
+        </Suspense>
+      </main>
+    </>
+  );
+}
+
+async function BlogPostList() {
+  let posts: BlogPostSummary[] = [];
+  let error: string | null = null;
+
+  try {
+    posts = await getBlogPostSummaries();
+  } catch (caughtError) {
+    error = caughtError instanceof Error ? caughtError.message : "No se pudo cargar el blog.";
+  }
+
+  return (
+    <section aria-label="Artículos publicados" className="mt-16 border-t border-border md:ml-[16.66%] md:mt-24">
           {error && (
             <div role="status" className="grid gap-4 py-10 sm:grid-cols-[1fr_2fr]">
               <h2 className="text-xl">El cuaderno está desconectado.</h2>
@@ -85,8 +96,22 @@ export default async function BlogPage() {
               </li>
             ))}
           </ol>
-        </section>
-      </main>
-    </>
+    </section>
+  );
+}
+
+function BlogPostListLoading() {
+  return (
+    <section aria-label="Cargando artículos" className="mt-16 animate-pulse border-t border-border md:ml-[16.66%] md:mt-24">
+      {[0, 1, 2].map((item) => (
+        <div key={item} className="grid gap-5 border-t border-border py-8 first:border-t-0 sm:grid-cols-[4rem_1fr_auto] md:py-10">
+          <div className="h-4 w-6 rounded-sm bg-muted" />
+          <div>
+            <div className="h-10 w-3/4 rounded-md bg-muted" />
+            <div className="mt-4 h-4 w-1/2 rounded-sm bg-muted" />
+          </div>
+        </div>
+      ))}
+    </section>
   );
 }

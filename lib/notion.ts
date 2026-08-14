@@ -1,3 +1,5 @@
+import { unstable_cache } from "next/cache"
+
 export interface BlogPost {
   id: string
   title: string
@@ -5,6 +7,15 @@ export interface BlogPost {
   date: string
   excerpt: string
   coverImage?: string
+}
+
+export interface BlogPostSummary {
+  id: string
+  title: string
+  slug: string
+  date: string
+  excerpt: string
+  hasCover: boolean
 }
 
 const NOTION_API_VERSION = "2022-06-28"
@@ -96,6 +107,29 @@ export async function getBlogPost(pageId: string) {
   }
 }
 
+export const getBlogPostSummaries = unstable_cache(
+  async (): Promise<BlogPostSummary[]> => {
+    const posts = await getBlogPosts()
+
+    return posts.map(({ coverImage, ...post }) => ({
+      ...post,
+      hasCover: Boolean(coverImage),
+    }))
+  },
+  ["blog-post-summaries"],
+  { revalidate: 300 },
+)
+
+export async function getBlogPostSummaryBySlug(slug: string): Promise<BlogPostSummary | null> {
+  const posts = await getBlogPostSummaries()
+  return posts.find((post) => post.slug === slug) ?? null
+}
+
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const posts = await getBlogPosts()
+  return posts.find((post) => post.slug === slug) ?? null
+}
+
 async function getBlocks(blockId: string): Promise<any[]> {
   const blocks: any[] = []
   let cursor: string | undefined = undefined
@@ -128,8 +162,7 @@ async function getBlocks(blockId: string): Promise<any[]> {
 }
 
 export async function getPostBySlug(slug: string) {
-  const posts = await getBlogPosts()
-  const post = posts.find((p) => p.slug === slug)
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
     return null
