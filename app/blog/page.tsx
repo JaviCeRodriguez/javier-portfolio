@@ -8,6 +8,21 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Blog",
   description: "Notas sobre frontend, equipos y el oficio detrás de los productos digitales.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog | Javier Rodriguez",
+    description: "Notas sobre frontend, equipos y el oficio detrás de los productos digitales.",
+    url: "/blog",
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Blog | Javier Rodriguez",
+    description: "Notas sobre frontend, equipos y el oficio detrás de los productos digitales.",
+  },
 };
 
 export default async function BlogPage() {
