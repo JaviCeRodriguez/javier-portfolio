@@ -8,7 +8,9 @@ Fixed
 
 Las imágenes hero de los artículos pueden dejar de cargar hasta recargar la página. Al
 compartir un artículo en Slack, la tarjeta muestra el ícono de imagen rota aunque el
-título y la descripción se renderizan correctamente.
+título y la descripción se renderizan correctamente. Además, el blog muestra un
+skeleton de página completa mientras espera respuestas de Notion, tanto en el listado
+como en un artículo.
 
 ## Steps to reproduce
 
@@ -21,6 +23,8 @@ título y la descripción se renderizan correctamente.
 
 La portada de cada artículo y su preview social deben usar una URL estable del sitio y
 cargar sin depender de que un consumidor externo conserve una URL firmada de Notion.
+La navegación al blog debe mostrar su estructura útil inmediatamente, con fallbacks
+limitados a la lista o el cuerpo que todavía esté cargando.
 
 ## Actual behavior
 
@@ -43,3 +47,5 @@ aportada muestra ese resultado.
   400. No se registró ni almacenó la URL firmada.
 - Tras el fix, la hero y `og:image` apuntan a la ruta interna estable y la respuesta
   local de portada devuelve 200 con `Content-Type: image/png`.
+- El listado ahora mantiene su encabezado mientras el listado se resuelve en un límite
+  de carga local; el artículo hace lo mismo para los bloques y el índice.
