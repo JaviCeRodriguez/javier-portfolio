@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { BrandMark } from "@/components/brand-mark";
 
 const navItems = [
   { name: "Sobre mí", href: "/#about" },
@@ -21,8 +22,8 @@ export function Navigation() {
     <header className="sticky top-0 z-50 border-b border-border bg-background">
       <nav className="site-container flex h-[4.5rem] items-center justify-between" aria-label="Navegación principal">
         <Link href="/" className="group flex items-center gap-3 no-underline" onClick={() => setIsOpen(false)}>
-          <span className="grid size-9 place-items-center rounded-md bg-foreground font-mono text-xs font-medium text-background transition-transform group-hover:-rotate-3">
-            JR
+          <span className="grid size-9 place-items-center rounded-md bg-foreground text-background transition-transform group-hover:-rotate-3">
+            <BrandMark className="size-7" />
           </span>
           <span className="text-sm font-extrabold tracking-[-0.03em]">Javier Rodriguez</span>
         </Link>
