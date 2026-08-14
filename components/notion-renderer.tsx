@@ -1,6 +1,7 @@
 import type React from "react";
 
 import { Fragment } from "react";
+import { MermaidDiagram } from "@/components/mermaid-diagram";
 
 interface NotionRendererProps {
   blocks: any[];
@@ -85,9 +86,19 @@ function NotionBlock({ block }: { block: any }) {
         </li>
       );
 
+    case "table":
+      return <NotionTable block={block} />;
+
     case "code":
       const language = block.code.language || "text";
       const code = block.code.rich_text.map((t: any) => t.plain_text).join("");
+      const codeCaption = block.code.caption
+        ?.map((text: any) => text.plain_text)
+        .join("");
+
+      if (language.toLowerCase() === "mermaid") {
+        return <MermaidDiagram chart={code} caption={codeCaption} />;
+      }
 
       return (
         <div className="my-8 overflow-hidden rounded-lg border border-border bg-muted/60">
@@ -179,6 +190,72 @@ function NotionBlock({ block }: { block: any }) {
     default:
       return null;
   }
+}
+
+function NotionTable({ block }: { block: any }) {
+  const rows = block.children?.filter(
+    (child: any) => child.type === "table_row",
+  );
+
+  if (!rows?.length) {
+    return null;
+  }
+
+  const hasColumnHeader = block.table.has_column_header;
+  const hasRowHeader = block.table.has_row_header;
+
+  return (
+    <div className="my-8">
+      <p className="mb-2 font-mono text-xs text-muted-foreground md:hidden">
+        Deslizá horizontalmente para recorrer la tabla.
+      </p>
+      <div
+        className="overflow-x-auto rounded-xl border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        tabIndex={0}
+      >
+        <table className="w-full min-w-[44rem] border-collapse text-left text-sm leading-relaxed">
+          <tbody>
+            {rows.map((row: any, rowIndex: number) => (
+              <tr
+                key={row.id}
+                className="border-b border-border last:border-b-0"
+              >
+                {row.table_row.cells.map(
+                  (cell: any[], cellIndex: number) => {
+                    const isColumnHeader = hasColumnHeader && rowIndex === 0;
+                    const isRowHeader = hasRowHeader && cellIndex === 0;
+                    const Cell = isColumnHeader || isRowHeader ? "th" : "td";
+
+                    return (
+                      <Cell
+                        key={`${row.id}-${cellIndex}`}
+                        scope={
+                          isColumnHeader
+                            ? "col"
+                            : isRowHeader
+                              ? "row"
+                              : undefined
+                        }
+                        className={
+                          isColumnHeader
+                            ? "bg-muted px-4 py-3 font-semibold text-foreground"
+                            : isRowHeader
+                              ? "bg-muted/50 px-4 py-3 font-medium text-foreground"
+                              : "px-4 py-3 align-top text-foreground"
+                        }
+                      >
+                        <RichText text={cell} />
+                      </Cell>
+                    );
+                  },
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 function RichText({ text }: { text: any[] }) {
