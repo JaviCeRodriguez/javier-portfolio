@@ -96,6 +96,11 @@ export async function getBlogPost(pageId: string) {
   }
 }
 
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const posts = await getBlogPosts()
+  return posts.find((post) => post.slug === slug) ?? null
+}
+
 async function getBlocks(blockId: string): Promise<any[]> {
   const blocks: any[] = []
   let cursor: string | undefined = undefined
@@ -128,8 +133,7 @@ async function getBlocks(blockId: string): Promise<any[]> {
 }
 
 export async function getPostBySlug(slug: string) {
-  const posts = await getBlogPosts()
-  const post = posts.find((p) => p.slug === slug)
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
     return null

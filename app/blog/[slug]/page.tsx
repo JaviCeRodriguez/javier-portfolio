@@ -8,6 +8,10 @@ import { getBlogPosts, getPostBySlug } from "@/lib/notion";
 
 export const revalidate = 60;
 
+function getCoverImageUrl(slug: string) {
+  return `/blog/${encodeURIComponent(slug)}/cover-image`;
+}
+
 export async function generateStaticParams() {
   try {
     const posts = await getBlogPosts();
@@ -22,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   try {
     const post = await getPostBySlug(slug);
     if (!post) return {};
+    const coverImageUrl = post.coverImage ? getCoverImageUrl(post.slug) : undefined;
 
     return {
       title: { absolute: `${post.title} | Javier Rodriguez` },
@@ -35,13 +40,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         locale: "es_AR",
         publishedTime: post.date,
-        images: post.coverImage ? [{ url: post.coverImage, alt: `Portada de ${post.title}` }] : undefined,
+        images: coverImageUrl ? [{ url: coverImageUrl, alt: `Portada de ${post.title}` }] : undefined,
       },
       twitter: {
-        card: post.coverImage ? "summary_large_image" : "summary",
+        card: coverImageUrl ? "summary_large_image" : "summary",
         title: post.title,
         description: post.excerpt || undefined,
-        images: post.coverImage ? [post.coverImage] : undefined,
+        images: coverImageUrl ? [coverImageUrl] : undefined,
       },
     };
   } catch {
@@ -73,9 +78,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {post.coverImage && (
             <figure className="mt-12 overflow-hidden rounded-xl bg-muted">
-              {/* Notion file URLs are short-lived and cannot be safely preconfigured as a Next Image host. */}
+              {/* The stable internal route refreshes Notion's short-lived signed URL on the server. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={post.coverImage} alt={`Portada de ${post.title}`} className="max-h-[42rem] w-full object-cover" />
+              <img src={getCoverImageUrl(post.slug)} alt={`Portada de ${post.title}`} className="max-h-[42rem] w-full object-cover" />
             </figure>
           )}
 
