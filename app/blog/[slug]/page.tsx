@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Navigation } from "@/components/navigation";
-import { NotionRenderer } from "@/components/notion-renderer";
+import { ZenblogArticle } from "@/components/zenblog-article";
 import { TableOfContents } from "@/components/table-of-contents";
-import { getBlogPosts, getPostBySlug } from "@/lib/notion";
+import { getBlogPosts, getPostBySlug } from "@/lib/zenblog";
 
 export const revalidate = 60;
 
@@ -26,9 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: { absolute: `${post.title} | Javier Rodriguez` },
       description: post.excerpt || undefined,
-      alternates: {
-        canonical: `/blog/${post.slug}`,
-      },
+      alternates: { canonical: `/blog/${post.slug}` },
       openGraph: {
         title: post.title,
         description: post.excerpt || undefined,
@@ -58,10 +56,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <Navigation />
-      <TableOfContents blocks={post.blocks} />
+      <TableOfContents />
       <main id="main-content" className="site-container pb-24 pt-12 md:pb-36 md:pt-20">
         <Link href="/blog" className="text-link text-sm">← Volver al blog</Link>
-
         <article className="mt-12 xl:pr-80">
           <header className="max-w-5xl">
             <time dateTime={post.date} className="font-mono text-xs text-accent">
@@ -73,14 +70,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {post.coverImage && (
             <figure className="mt-12 overflow-hidden rounded-xl bg-muted">
-              {/* Notion file URLs are short-lived and cannot be safely preconfigured as a Next Image host. */}
+              {/* Zenblog hosts media remotely, so a native image avoids host configuration. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={post.coverImage} alt={`Portada de ${post.title}`} className="max-h-[42rem] w-full object-cover" />
             </figure>
           )}
 
           <div className="article-content mt-14 max-w-3xl border-t border-border pt-10 md:mt-20 md:pt-14">
-            <NotionRenderer blocks={post.blocks} />
+            <ZenblogArticle html={post.htmlContent} />
           </div>
         </article>
       </main>

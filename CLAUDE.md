@@ -6,7 +6,7 @@ Instructions for Claude Code when working in this repository.
 
 Personal portfolio for Javier Rodriguez. It presents his frontend-engineering profile,
 skills, professional experience and contact channels, and includes a blog whose published
-posts are sourced from Notion. Read `PRD.md`, `AGENTS.md`, and the documentation under
+posts are sourced from Zenblog. Read `PRD.md`, `AGENTS.md`, and the documentation under
 `docs/` before making changes.
 
 ## Stack
@@ -14,7 +14,7 @@ posts are sourced from Notion. Read `PRD.md`, `AGENTS.md`, and the documentation
 - **Language:** strict TypeScript.
 - **Framework:** Next.js 16 with React 19 and the App Router.
 - **Styling:** Tailwind CSS v4, with the visual system centralized in `app/globals.css`.
-- **Content:** Notion REST API for the blog; Vercel Analytics.
+- **Content:** Zenblog API for the blog; Vercel Analytics.
 - **Testing:** no automated test runner is configured.
 - **Package manager:** pnpm.
 
@@ -28,7 +28,7 @@ keep client boundaries minimal.
 /app/blog             # Blog index, article route and loading state
 /components           # Portfolio sections, navigation and shared UI
 /components/ui        # Reusable shadcn-style UI primitives
-/lib                  # Notion client and shared utilities
+/lib                  # Zenblog client and shared utilities
 /public               # Static images and icons
 /blogs                # Local blog-related resources
 /research             # Product and design research material
@@ -66,8 +66,7 @@ pnpm lint
 
 ## Environment variables
 
-The blog uses `NOTION_API_KEY` and `NOTION_DATABASE_ID`. They are server-side only.
-Never commit `.env.local`, expose secrets in client code, or log Notion payloads.
+The blog uses `ZENBLOG_BLOG_ID` on the server. Never commit `.env.local`, expose secrets in client code, or log Zenblog payloads.
 
 ## Security (MANDATORY)
 
@@ -152,13 +151,13 @@ inspect the homepage, blog index and mobile navigation at desktop and mobile wid
 
 ## Sensitive data
 
-Never log personal contact details, Notion content payloads or credentials in production.
+Never log personal contact details, Zenblog content payloads or credentials in production.
 
 ## Don't
 
 - Do not change public routes, navigation labels or homepage anchors unless requested.
 - Do not introduce pill buttons, unrelated colors or a second visual system.
-- Do not use remote Notion images with `next/image`; signed URLs are short-lived.
+- Do not use remote Zenblog images with `next/image` without configuring their host.
 - Do not commit, push or open a PR unless explicitly asked.
 
 ## When in doubt

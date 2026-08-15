@@ -10,39 +10,28 @@ interface Heading {
   level: number;
 }
 
-interface TableOfContentsProps {
-  blocks: any[];
-}
-
-export function TableOfContents({ blocks }: TableOfContentsProps) {
+export function TableOfContents() {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>("");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
-    // Extract headings from blocks
-    const extractedHeadings: Heading[] = [];
+    const articleHeadings = document.querySelectorAll<HTMLElement>(
+      ".article-content h1, .article-content h2, .article-content h3"
+    );
+    const extractedHeadings = Array.from(articleHeadings).map((heading, index) => {
+      const id = heading.id || `article-heading-${index + 1}`;
+      heading.id = id;
 
-    blocks.forEach((block) => {
-      if (
-        block.type === "heading_1" ||
-        block.type === "heading_2" ||
-        block.type === "heading_3"
-      ) {
-        const text = block[block.type].rich_text
-          .map((t: any) => t.plain_text)
-          .join("");
-        const level = Number.parseInt(block.type.split("_")[1]);
-        extractedHeadings.push({
-          id: block.id,
-          text,
-          level,
-        });
-      }
+      return {
+        id,
+        text: heading.textContent?.trim() ?? "",
+        level: Number.parseInt(heading.tagName.slice(1), 10),
+      };
     });
 
-    setHeadings(extractedHeadings);
-  }, [blocks]);
+    queueMicrotask(() => setHeadings(extractedHeadings.filter((heading) => heading.text)));
+  }, []);
 
   useEffect(() => {
     // Observe heading intersections for active state
@@ -129,6 +118,7 @@ export function TableOfContents({ blocks }: TableOfContentsProps) {
                 className="transition-all"
               >
                 <button
+                  type="button"
                   onClick={() => handleClick(heading.id)}
                   className={`text-left w-full hover:text-accent transition-colors ${
                     activeId === heading.id
@@ -160,6 +150,7 @@ export function TableOfContents({ blocks }: TableOfContentsProps) {
                   className="transition-all"
                 >
                   <button
+                    type="button"
                     onClick={() => handleClick(heading.id)}
                     className={`text-left w-full hover:text-accent transition-colors ${
                       activeId === heading.id

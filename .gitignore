@@ -43,6 +43,6 @@ next-env.d.ts
 # Agents Skills
 .agents/skills
 
-# Local blog drafts and research; published posts live in Notion.
+# Local blog drafts and research; published posts live in Zenblog.
 /blogs/
 /research/

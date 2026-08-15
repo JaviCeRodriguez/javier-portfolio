@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "flow": "feature",
+  "way": "incu/dev",
+  "discipline": "development",
+  "branch": "feat/002-zenblog-mermaid-poc",
+  "isolationType": "branch",
+  "phase": "review",
+  "lastPhase": "validation",
+  "documents": {
+    "prd": "docs/prds/002-zenblog-mermaid-poc/PRD.md",
+    "plan": "docs/prds/002-zenblog-mermaid-poc/PLAN.md",
+    "testing": "docs/prds/002-zenblog-mermaid-poc/TESTING.md"
+  },
+  "gates": {
+    "prd": { "status": "passed" },
+    "plan": { "status": "passed" },
+    "testing": { "status": "passed" },
+    "pr-develop": { "status": "pending", "url": "https://github.com/JaviCeRodriguez/javier-portfolio/pull/24" },
+    "pr-main": { "status": "pending" }
+  },
+  "steps": [
+    { "id": "A1", "label": "Configurar y tipar el cliente Zenblog", "status": "done" },
+    { "id": "A2", "label": "Adaptar las rutas del blog", "status": "done" },
+    { "id": "B1", "label": "Renderizar HTML y Mermaid", "status": "done" },
+    { "id": "B2", "label": "Adaptar índice y estilos", "status": "done" },
+    { "id": "C1", "label": "Actualizar documentación", "status": "done" },
+    { "id": "C2", "label": "Validar la integración", "status": "done" }
+  ]
+}
