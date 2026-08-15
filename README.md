@@ -1,12 +1,12 @@
 # Frontend Engineer Portfolio
 
-A modern, mobile-first portfolio website built with Next.js 16, featuring a blog powered by Notion CMS.
+A modern, mobile-first portfolio website built with Next.js 16, featuring a blog powered by Zenblog.
 
 ## Features
 
 - 🎨 Clean and modern design with smooth transitions
 - 📱 Mobile-first responsive layout
-- 📝 Blog powered by Notion CMS
+- 📝 Blog powered by Zenblog
 - 💼 Work experience timeline
 - 🛠️ Skills showcase
 - 📧 Contact section with social links
@@ -19,7 +19,7 @@ A modern, mobile-first portfolio website built with Next.js 16, featuring a blog
 - **Styling:** Tailwind CSS v4
 - **UI Components:** shadcn/ui
 - **Animations:** Framer Motion
-- **CMS:** Notion API
+- **CMS:** Zenblog
 - **Code Highlighting:** React Syntax Highlighter
 - **Deployment:** Vercel
 
@@ -33,7 +33,7 @@ A modern, mobile-first portfolio website built with Next.js 16, featuring a blog
 
 3. Set up environment variables:
    - Copy `.env.example` to `.env.local`
-   - Add your Notion API key and Database ID
+   - Add `ZENBLOG_BLOG_ID=your-blog-id`
 
 4. Run the development server:
    ```bash
@@ -42,22 +42,13 @@ A modern, mobile-first portfolio website built with Next.js 16, featuring a blog
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Notion Database Setup
+## Zenblog setup
 
-To use the blog feature, you need to set up a Notion database with the following properties:
+Create a blog in [Zenblog](https://www.zenblog.com/) and copy its blog ID from the dashboard settings into `.env.local` as `ZENBLOG_BLOG_ID`.
 
-- **Title** (Title): The blog post title
-- **Slug** (Rich Text): URL-friendly slug for the post
-- **Date** (Date): Publication date
-- **Excerpt** (Rich Text): Short description of the post
-- **Cover** (File): Optional cover image
+### Mermaid diagrams
 
-### How to Get Your Notion Credentials:
-
-1. Go to [Notion Integrations](https://www.notion.so/my-integrations)
-2. Create a new integration and copy the API key
-3. Share your database with the integration
-4. Copy the database ID from the database URL
+Posts can declare a renderer in the first line of a code block, for example `@render mermaid` or `@render table`. Mermaid diagrams become SVGs and Markdown tables become responsive HTML tables; invalid source remains readable code.
 
 ## Project Structure
 
@@ -76,9 +67,9 @@ To use the blog feature, you need to set up a Notion database with the following
 │   ├── experience.tsx        # Work experience timeline
 │   ├── contact.tsx           # Contact section
 │   ├── navigation.tsx        # Navigation bar
-│   └── notion-renderer.tsx   # Notion block renderer
+│   └── zenblog-article.tsx   # Sanitized Zenblog HTML renderer
 └── lib/
-    └── notion.ts             # Notion API utilities
+    └── zenblog.ts            # Zenblog API utilities
 ```
 
 ## Customization
@@ -100,20 +91,9 @@ The design system is configured in `app/globals.css`. You can customize:
 - Fonts (Tailwind theme configuration)
 - Border radius (`--radius`)
 
-## Supported Notion Blocks
+## Supported article content
 
-The blog renderer supports:
-
-- Paragraphs
-- Headings (H1, H2, H3)
-- Lists (Bulleted & Numbered)
-- Code blocks with syntax highlighting
-- Quotes
-- Images with captions
-- Callouts
-- Toggle blocks
-- Dividers
-- Rich text formatting (bold, italic, code, links)
+Zenblog HTML is sanitized before rendering. Standard editorial HTML (headings, lists, links, quotes, images, tables and code) is supported, plus Mermaid code blocks.
 
 ## License
 

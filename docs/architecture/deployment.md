@@ -11,9 +11,9 @@
 
 ## Runtime topology
 
-The codebase is a single Next.js runtime. The environment must provide the two Notion
-variables for blog data to load. Page-level revalidation is set to 60 seconds for both
-blog routes. (sources: `lib/notion.ts`, `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`)
+The codebase is a single Next.js runtime. The environment must provide `ZENBLOG_BLOG_ID`
+for blog data to load. Page-level revalidation is set to 60 seconds for both blog routes.
+(sources: `lib/zenblog.ts`, `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`)
 
 ## Deployment evidence
 

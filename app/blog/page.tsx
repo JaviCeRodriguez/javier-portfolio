@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
-import { getBlogPosts, type BlogPost } from "@/lib/notion";
+import { getBlogPosts, type BlogPost } from "@/lib/zenblog";
 
 export const revalidate = 60;
 
@@ -54,7 +54,7 @@ export default async function BlogPage() {
             <div role="status" className="grid gap-4 py-10 sm:grid-cols-[1fr_2fr]">
               <h2 className="text-xl">El cuaderno está desconectado.</h2>
               <div>
-                <p className="mb-2 text-muted-foreground">La conexión con Notion no está configurada en este entorno.</p>
+                <p className="mb-2 text-muted-foreground">La conexión con el blog no está disponible en este entorno.</p>
                 <p className="mb-0 font-mono text-xs text-muted-foreground">{error}</p>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default async function BlogPage() {
 
           <ol>
             {posts.map((post, index) => (
-              <li key={post.id}>
+              <li key={post.slug}>
                 <Link href={`/blog/${post.slug}`} className="group grid gap-5 border-t border-border py-8 no-underline first:border-t-0 sm:grid-cols-[4rem_1fr_auto] sm:items-start md:py-10">
                   <span className="font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                   <article>
