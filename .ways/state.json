@@ -16,7 +16,7 @@
     "prd": { "status": "passed" },
     "plan": { "status": "passed" },
     "testing": { "status": "passed" },
-    "pr-develop": { "status": "pending" },
+    "pr-develop": { "status": "pending", "url": "https://github.com/JaviCeRodriguez/javier-portfolio/pull/24" },
     "pr-main": { "status": "pending" }
   },
   "steps": [
