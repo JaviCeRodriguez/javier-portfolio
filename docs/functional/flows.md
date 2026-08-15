@@ -12,18 +12,18 @@
 ## Read the blog index
 
 1. A visitor opens `/blog`.
-2. The server queries Notion for published posts.
+2. The server queries Zenblog for published posts.
 3. The page renders a numbered list, an intentional empty state, or a composed error
    state when the integration cannot be used.
 
-(sources: `app/blog/page.tsx`, `lib/notion.ts`)
+(sources: `app/blog/page.tsx`, `lib/zenblog.ts`)
 
 ## Read an article
 
 1. A visitor opens `/blog/[slug]`.
-2. The route fetches the published post list and matches the slug.
-3. For a match, the client fetches its page and nested blocks, then the route renders the
-   header, optional cover, table of contents and supported blocks.
+2. The route fetches the Zenblog post by slug.
+3. For a match, the route renders the header, optional cover, table of contents and
+   sanitized HTML; Mermaid code blocks are enhanced in the browser.
 4. For no match, the route invokes the not-found behavior.
 
-(sources: `app/blog/[slug]/page.tsx`, `lib/notion.ts`, `components/notion-renderer.tsx`)
+(sources: `app/blog/[slug]/page.tsx`, `lib/zenblog.ts`, `components/zenblog-article.tsx`)

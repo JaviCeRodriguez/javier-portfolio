@@ -4,32 +4,25 @@
 
 This repository defines no database client, schema, migration directory, cache or queue.
 Portfolio information is hard-coded inside its section components; blog content is
-normalized from an external Notion database. (sources: `components/`, `lib/notion.ts`)
+normalized from Zenblog. (sources: `components/`, `lib/zenblog.ts`)
 
 ## Blog post projection
 
-`getBlogPosts` maps each Notion page to the following application shape.
-(source: `lib/notion.ts`)
+`getBlogPosts` maps the Zenblog response to the application shape below.
+(source: `lib/zenblog.ts`)
 
-| Field | Source and fallback |
+| Field | Zenblog source |
 |---|---|
-| `id` | Notion page ID |
-| `title` | `Title`, then `Name`, then `Untitled` |
-| `slug` | `Slug`, then page ID |
-| `date` | `Date`, then `Created`, then Notion creation time, then current time |
-| `excerpt` | `Excerpt`, then `Description`, then empty text |
-| `coverImage` | External or uploaded Notion cover URL, when present |
+| `title` | `title` |
+| `slug` | `slug` |
+| `date` | `published_at` |
+| `excerpt` | `excerpt`, when present |
+| `coverImage` | `cover_image`, when present |
+| `htmlContent` | `html_content` for an individual post |
 
-Only entries with `Status` equal to `Published` are queried. (source: `lib/notion.ts`)
+## Article rendering
 
-## Block tree
-
-For a selected post, the client fetches the page and recursively fetches its child
-blocks where `has_children` is true. The resulting tree is used directly by the article
-renderer. (sources: `lib/notion.ts`, `components/notion-renderer.tsx`)
-
-## Open questions / to verify
-
-- The exact Notion property types and validation rules live outside the repository.
-- The recursive block fetch is sequential; its expected scale and rate-limit behavior
-  are not documented in code.
+The article HTML is sanitized on the server. A small client component detects
+`pre > code.language-mermaid` and transforms valid blocks to SVG; invalid syntax remains
+as a readable code block. (sources: `components/zenblog-article.tsx`,
+`components/mermaid-content.tsx`)

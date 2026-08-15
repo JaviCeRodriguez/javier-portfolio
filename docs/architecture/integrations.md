@@ -2,19 +2,19 @@
 
 | System | Purpose | Configuration | Code entry point |
 |---|---|---|---|
-| Notion REST API | Published blog post metadata and blocks | `NOTION_API_KEY`, `NOTION_DATABASE_ID`, API version `2022-06-28` | `lib/notion.ts` |
+| Zenblog API | Published post metadata and HTML | `ZENBLOG_BLOG_ID` | `lib/zenblog.ts` |
+| Mermaid | Browser-side enhancement of Mermaid code blocks | Package integration | `components/mermaid-content.tsx` |
 | Vercel Analytics | Client-side site analytics | Package integration; no repo-level environment config found | `app/layout.tsx` |
 
-## Notion request flow
+## Zenblog request flow
 
-`notionFetch` sends an authenticated request to `https://api.notion.com/v1/`, with the
-Notion version and JSON content headers. `getBlogPosts` queries the configured database;
-`getPostBySlug` selects a normalized post then fetches its page and nested blocks.
-(source: `lib/notion.ts`)
+`createZenblogClient` reads the server-side blog ID. `getBlogPosts` requests the post
+list; `getPostBySlug` requests the selected article and normalizes its response.
+(source: `lib/zenblog.ts`)
 
 ## Failure handling
 
-Missing credentials and non-success responses throw errors. The index page catches them
-and presents an unavailable-connection state. The article route lets the error propagate
-unless no post is found, in which case it invokes `notFound()`.
-(sources: `lib/notion.ts`, `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`)
+Missing configuration and non-success responses throw errors. The index page catches them
+and presents an unavailable-connection state. A non-existent article returns `null` and
+invokes the app's not-found route. (sources: `lib/zenblog.ts`, `app/blog/page.tsx`,
+`app/blog/[slug]/page.tsx`)

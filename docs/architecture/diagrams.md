@@ -5,7 +5,7 @@
 ```mermaid
 flowchart LR
   Visitor[Visitante] --> Portfolio[Portfolio Next.js]
-  Portfolio --> Notion[Notion REST API]
+  Portfolio --> Zenblog[Zenblog API]
   Portfolio --> Vercel[Vercel Analytics]
 ```
 
@@ -18,10 +18,11 @@ flowchart TD
   Routes --> BlogIndex[Blog index]
   Routes --> BlogPost[Blog post]
   Home --> Sections[Portfolio components]
-  BlogIndex --> NotionClient[lib/notion.ts]
-  BlogPost --> NotionClient
-  BlogPost --> Renderer[NotionRenderer]
-  NotionClient --> NotionAPI[Notion REST API]
+  BlogIndex --> ZenblogClient[lib/zenblog.ts]
+  BlogPost --> ZenblogClient
+  BlogPost --> Renderer[ZenblogArticle]
+  Renderer --> Mermaid[MermaidContent]
+  ZenblogClient --> ZenblogAPI[Zenblog API]
 ```
 
 ## Published blog reading sequence
@@ -30,19 +31,16 @@ flowchart TD
 sequenceDiagram
   participant Visitor
   participant Route as Blog route
-  participant Client as Notion client
-  participant API as Notion API
+  participant Client as Zenblog client
+  participant API as Zenblog API
   Visitor->>Route: Request /blog or /blog/[slug]
-  Route->>Client: getBlogPosts()
-  Client->>API: Query published database pages
-  API-->>Client: Page metadata
-  alt Article route
-    Route->>Client: getPostBySlug(slug)
-    Client->>API: Fetch page and child blocks
-    API-->>Client: Block tree
-  end
+  Route->>Client: getBlogPosts() or getPostBySlug()
+  Client->>API: Request published post data
+  API-->>Client: Post metadata or HTML
   Client-->>Route: Normalized content
   Route-->>Visitor: Rendered page
+  opt Mermaid code block
+    Visitor->>Route: Hydrate article enhancement
+    Route-->>Visitor: Render Mermaid SVG
+  end
 ```
-
-The diagrams use the Mermaid syntax supported by the repository's `mermaid` dependency.
