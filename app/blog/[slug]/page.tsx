@@ -26,9 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: { absolute: `${post.title} | Javier Rodriguez` },
       description: post.excerpt || undefined,
-      alternates: {
-        canonical: `/blog/${post.slug}`,
-      },
+      alternates: { canonical: `/blog/${post.slug}` },
       openGraph: {
         title: post.title,
         description: post.excerpt || undefined,
@@ -61,7 +59,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <TableOfContents />
       <main id="main-content" className="site-container pb-24 pt-12 md:pb-36 md:pt-20">
         <Link href="/blog" className="text-link text-sm">← Volver al blog</Link>
-
         <article className="mt-12 xl:pr-80">
           <header className="max-w-5xl">
             <time dateTime={post.date} className="font-mono text-xs text-accent">
