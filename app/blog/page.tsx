@@ -33,7 +33,50 @@ export default async function BlogPage() {
         <section aria-label="Artículos publicados" className="mt-16 border-t border-border md:ml-[16.66%] md:mt-24">
           {error && <div role="status" className="grid gap-4 py-10 sm:grid-cols-[1fr_2fr]"><h2 className="text-xl">El cuaderno está desconectado.</h2><div><p className="mb-2 text-muted-foreground">La conexión con el blog no está disponible en este entorno.</p><p className="mb-0 font-mono text-xs text-muted-foreground">{error}</p></div></div>}
           {!error && posts.length === 0 && <div className="grid gap-4 py-12 sm:grid-cols-[1fr_2fr]"><h2 className="text-xl">Todavía no hay publicaciones.</h2><p className="mb-0 max-w-[46ch] text-muted-foreground">La primera nota todavía está tomando forma. Mientras tanto, podés recorrer el resto del portfolio.</p></div>}
-          <ol>{posts.map((post, index) => <li key={post.slug}><Link href={`/blog/${post.slug}`} className="group grid gap-5 border-t border-border py-8 no-underline first:border-t-0 sm:grid-cols-[4rem_1fr_auto] sm:items-start md:py-10"><span className="font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</span><article><h2 className="max-w-[22ch] text-3xl transition-colors group-hover:text-accent md:text-5xl">{post.title}</h2>{post.excerpt && <p className="mt-4 max-w-[58ch] text-muted-foreground">{post.excerpt}</p>}</article><time dateTime={post.date} className="font-mono text-xs text-muted-foreground">{new Date(post.date).toLocaleDateString("es-AR", { year: "numeric", month: "short", day: "2-digit" })}</time></Link></li>)}</ol>
+          <ol>
+            {posts.map((post, index) => (
+              <li key={post.slug}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group grid gap-5 border-t border-border py-8 no-underline first:border-t-0 sm:grid-cols-[4rem_1fr_auto] sm:items-start md:py-10"
+                >
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <article
+                    className={post.coverImage ? "grid gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-8" : undefined}
+                  >
+                    {post.coverImage && (
+                      <figure className="aspect-video overflow-hidden rounded-lg bg-muted lg:aspect-[4/3]">
+                        {/* Zenblog hosts media remotely, so a native image avoids host configuration. */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={post.coverImage}
+                          alt={`Imagen de portada de ${post.title}`}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.025]"
+                        />
+                      </figure>
+                    )}
+                    <div>
+                      <h2 className="max-w-[22ch] text-3xl transition-colors group-hover:text-accent md:text-5xl">
+                        {post.title}
+                      </h2>
+                      {post.excerpt && <p className="mt-4 max-w-[58ch] text-muted-foreground">{post.excerpt}</p>}
+                    </div>
+                  </article>
+                  <time dateTime={post.date} className="font-mono text-xs text-muted-foreground">
+                    {new Date(post.date).toLocaleDateString("es-AR", {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit",
+                    })}
+                  </time>
+                </Link>
+              </li>
+            ))}
+          </ol>
         </section>
       </main>
     </>
