@@ -1,3 +1,7 @@
+"use client";
+
+import { trackEvent } from "@/lib/analytics";
+
 const contacts = [
   { label: "GitHub", href: "https://github.com/JaviCeRodriguez" },
   { label: "LinkedIn", href: "https://linkedin.com/in/javicerodriguez" },
@@ -12,7 +16,11 @@ export function Contact() {
           <div className="md:col-span-8">
             <p className="mb-4 font-mono text-sm text-accent">¿Tenés un problema que valga la pena resolver?</p>
             <h2 className="text-[clamp(3rem,7vw,7.2rem)] leading-[0.92]">Hagámoslo claro.</h2>
-            <a className="mt-9 inline-block break-all text-2xl font-semibold tracking-[-0.04em] underline decoration-accent decoration-2 underline-offset-8 transition-colors hover:text-accent md:text-4xl" href="mailto:contacto@javo.com.ar">
+            <a
+              className="mt-9 inline-block break-all text-2xl font-semibold tracking-[-0.04em] underline decoration-accent decoration-2 underline-offset-8 transition-colors hover:text-accent md:text-4xl"
+              href="mailto:contacto@javo.com.ar"
+              onClick={() => trackEvent("contact_click", { method: "email" })}
+            >
               contacto@javo.com.ar
             </a>
           </div>
@@ -26,7 +34,13 @@ export function Contact() {
           <ul className="flex flex-wrap gap-x-6 gap-y-3 font-semibold">
             {contacts.map((contact) => (
               <li key={contact.label}>
-                <a href={contact.href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">
+                <a
+                  href={contact.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-accent"
+                  onClick={() => trackEvent("contact_click", { method: contact.label })}
+                >
                   {contact.label} ↗
                 </a>
               </li>

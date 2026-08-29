@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 export function Hero() {
   return (
@@ -14,7 +16,11 @@ export function Hero() {
             Soy Javier, frontend engineer enfocado en interfaces claras, sistemas sólidos y equipos que puedan entregar con confianza.
           </p>
           <div className="flex flex-wrap items-center gap-5">
-            <a href="#experience" className="button-primary whitespace-nowrap">
+            <a
+              href="#experience"
+              className="button-primary whitespace-nowrap"
+              onClick={() => trackEvent("hero_cta_click", { destination: "experience" })}
+            >
               Ver experiencia
             </a>
             <a
@@ -22,6 +28,7 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-link whitespace-nowrap"
+              onClick={() => trackEvent("hero_cta_click", { destination: "github" })}
             >
               GitHub ↗
             </a>

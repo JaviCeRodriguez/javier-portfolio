@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
+import { trackEvent } from "@/lib/analytics";
 
 const navItems = [
   { name: "Sobre mí", href: "/#about" },
@@ -21,7 +22,14 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background">
       <nav className="site-container flex h-[4.5rem] items-center justify-between" aria-label="Navegación principal">
-        <Link href="/" className="group flex items-center gap-3 no-underline" onClick={() => setIsOpen(false)}>
+        <Link
+          href="/"
+          className="group flex items-center gap-3 no-underline"
+          onClick={() => {
+            setIsOpen(false);
+            trackEvent("navigation_click", { destination: "home", menu: "brand" });
+          }}
+        >
           <span className="grid size-9 place-items-center rounded-md bg-foreground text-background transition-transform group-hover:-rotate-3">
             <BrandMark className="size-7" />
           </span>
@@ -35,6 +43,7 @@ export function Navigation() {
               <li key={item.name}>
                 <Link
                   href={item.href}
+                  onClick={() => trackEvent("navigation_click", { destination: item.name, menu: "desktop" })}
                   className={`relative py-2 no-underline transition-colors hover:text-accent ${active ? "text-accent" : "text-foreground"}`}
                 >
                   {item.name}
@@ -47,7 +56,10 @@ export function Navigation() {
 
         <button
           type="button"
-          onClick={() => setIsOpen((open) => !open)}
+          onClick={() => {
+            setIsOpen((open) => !open);
+            trackEvent("mobile_menu_toggle", { state: isOpen ? "closed" : "opened" });
+          }}
           aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isOpen}
           className="grid size-10 place-items-center rounded-md border border-border text-foreground transition-colors hover:bg-muted md:hidden"
@@ -63,7 +75,10 @@ export function Navigation() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    trackEvent("navigation_click", { destination: item.name, menu: "mobile" });
+                  }}
                   className="block py-3 text-lg font-semibold no-underline transition-colors hover:text-accent"
                 >
                   {item.name}
