@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
+import { GoogleTagManager } from '@next/third-parties/google'
 import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -87,6 +88,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-AR">
+      <GoogleTagManager gtmId="G-0ER36EK43V" />
       <body className={`${manrope.variable} ${plexMono.variable} antialiased`}>
         <a href="#main-content" className="skip-link">
           Ir al contenido
